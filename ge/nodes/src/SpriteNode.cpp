@@ -19,8 +19,8 @@ SDL_Rect SpriteNode::getBounds() {
 }
 
 //renderable
-void SpriteNode::render(const Renderer &renderer) {
-  renderer.renderCopy(texture->getCPtr(), texture->getClipRect(), getBounds());
+void SpriteNode::render(const std::shared_ptr<Renderer> &renderer) {
+  renderer->renderCopy(texture->getCPtr(), texture->getClipRect(), getBounds());
 
   for (auto child: children) {
     auto node = child.get();
@@ -30,9 +30,9 @@ void SpriteNode::render(const Renderer &renderer) {
       bounds.x += x;
       bounds.y += y;
 
-      renderer.renderCopy(spriteNode->getTexture()->getCPtr(),
-                          spriteNode->getTexture()->getClipRect(),
-                          bounds);
+      renderer->renderCopy(spriteNode->getTexture()->getCPtr(),
+                           spriteNode->getTexture()->getClipRect(),
+                           bounds);
     }
   }
 }

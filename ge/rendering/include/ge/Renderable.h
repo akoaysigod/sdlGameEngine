@@ -9,7 +9,7 @@ namespace ge {
 
   class Renderable: public Hashable {
   public:
-    virtual void render(const Renderer &renderer) = 0;
+    virtual void render(const std::shared_ptr<Renderer> &renderer) = 0;
     int zPosition = 0;
   };
 }

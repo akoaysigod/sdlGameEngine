@@ -13,14 +13,15 @@ Texture::Texture(std::shared_ptr<SDL_Texture> texture,
                  const int height):
   texture(texture), clipRect(clipRect), width(width), height(height) {}
 
-Texture Texture::init(const std::string &fileName, const Renderer &renderer) {
+Texture Texture::init(const std::string &fileName,
+                      const std::shared_ptr<Renderer> &renderer) {
   auto surface = std::shared_ptr<SDL_Surface>(
     IMG_Load(fileName.c_str()),
     SDL_FreeSurface);
   auto width = surface.get()->w;
   auto height = surface.get()->h;
   auto texture = std::shared_ptr<SDL_Texture>(
-    SDL_CreateTextureFromSurface(renderer.getCPtr(), surface.get()),
+    SDL_CreateTextureFromSurface(renderer->getCPtr(), surface.get()),
     SDL_DestroyTexture);
   SDL_Rect clipRect = {0, 0, width, height};
   return Texture(texture, clipRect, width, height);

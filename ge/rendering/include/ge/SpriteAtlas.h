@@ -17,7 +17,8 @@ public:
   SpriteAtlas(const std::string &atlasFileName,
               Texture texture);
 
-  std::shared_ptr<Texture> operator[](const std::string name);
+  std::shared_ptr<Texture> operator[](const std::string &name);
+  std::shared_ptr<Texture> getTexture(const std::string &name);
   std::vector<std::string> getNames();
 
 private:

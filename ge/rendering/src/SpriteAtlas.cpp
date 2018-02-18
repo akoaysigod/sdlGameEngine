@@ -54,7 +54,7 @@ SpriteAtlas::SpriteAtlas(const std::string &atlasFileName,
   }
 }
 
-std::shared_ptr<Texture> SpriteAtlas::operator[](const std::string name) {
+std::shared_ptr<Texture> SpriteAtlas::getTexture(const std::string &name) {
   auto entry = entries[name];
   if (!entry) {
     return nullptr;
@@ -69,6 +69,10 @@ std::shared_ptr<Texture> SpriteAtlas::operator[](const std::string name) {
   auto newTexture = std::make_shared<Texture>(texture.make(rect));
   textures[name] = newTexture;
   return std::shared_ptr<Texture>(newTexture);
+}
+
+std::shared_ptr<Texture> SpriteAtlas::operator[](const std::string &name) {
+  return getTexture(name);
 }
 
 std::vector<std::string> SpriteAtlas::getNames() {

@@ -22,7 +22,7 @@ namespace ge {
 
     std::shared_ptr<Node> remove(std::shared_ptr<Node> node);
 
-    void render(const Renderer &renderer);
+    void render(const std::shared_ptr<Renderer> &renderer);
 
     std::vector<std::shared_ptr<Node>> getChildren();
 

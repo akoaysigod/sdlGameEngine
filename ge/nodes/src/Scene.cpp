@@ -69,7 +69,7 @@ std::vector<std::shared_ptr<Node>> Scene::getChildren() {
   return children;
 }
 
-void Scene::render(const Renderer &renderer) {
+void Scene::render(const std::shared_ptr<Renderer> &renderer) {
   for (auto i: zPositions) {
     for (auto renderable: renderables[i]) {
       if (renderable.get()) {

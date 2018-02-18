@@ -16,7 +16,7 @@ namespace ge {
     SDL_Rect getBounds();
 
     //renderable
-    void render(const Renderer &renderer);
+    void render(const std::shared_ptr<Renderer> &renderer);
 
     std::shared_ptr<Texture> getTexture();
     void setTexture(std::shared_ptr<Texture> texture);
