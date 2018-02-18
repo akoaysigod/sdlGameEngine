@@ -1,0 +1,5 @@
+320 240
+mouse_over 0 0
+mouse_out 320 0
+mouse_down 0 240
+mouse_up 320 240
