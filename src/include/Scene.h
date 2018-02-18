@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Renderable.h"
-#include "Updateable.h"
+#include "../include/Renderable.h"
+#include "../include/Updateable.h"
 
 #include <memory>
 #include <map>
@@ -19,7 +19,6 @@ namespace ge {
 
     void add(std::shared_ptr<SpriteNode> spriteNode);
     void addRenderable(std::shared_ptr<Renderable> renderable);
-    void addUpdateable(std::shared_ptr<Updateable> updateable);
 
     std::shared_ptr<Node> remove(std::shared_ptr<Node> node);
 
@@ -33,6 +32,5 @@ namespace ge {
   private:
     std::map<int, std::vector<std::shared_ptr<Renderable>>> renderables = {};
     std::vector<int> zPositions = {};
-    std::vector<std::shared_ptr<Updateable>> updateables = {};
   };
 }

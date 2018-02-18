@@ -1,7 +1,7 @@
-#include "Node.h"
+#include "../include/Node.h"
 
-#include "Scene.h"
-#include "UUID.h"
+#include "../include/Scene.h"
+#include "../include/UUID.h"
 
 using namespace ge;
 
@@ -18,12 +18,12 @@ void Node::setPosition(Position position) {
 
 //updateable
 void Node::update(double delta) {
-  if (action.has_value()) {
-    if ((*action)->completed()) {
-      this->action = std::nullopt;
+  if (action) {
+    if (action->completed()) {
+      this->action = nullptr;
     }
     else {
-      (*action)->run(this, delta);
+      action->run(this, delta);
     }
   }
 
@@ -33,11 +33,11 @@ void Node::update(double delta) {
 }
 
 void Node::setAction(std::shared_ptr<Action> action) {
-  this->action = std::optional<std::shared_ptr<Action>>(action);
+  this->action = std::shared_ptr<Action>(action);
 }
 
 bool Node::hasAction() {
-  return action.has_value();
+  return action != nullptr;
 }
 
 // hashable

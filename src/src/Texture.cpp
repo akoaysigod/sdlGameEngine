@@ -1,9 +1,9 @@
-#include "Texture.h"
+#include "../include/Texture.h"
 
 #include <SDL.h>
 #include <SDL_image.h>
 
-#include "Renderer.h"
+#include "../include/Renderer.h"
 
 using namespace ge;
 

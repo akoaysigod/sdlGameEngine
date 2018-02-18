@@ -1,8 +1,8 @@
-#include "Scene.h"
+#include "../include/Scene.h"
 
-#include "Node.h"
-#include "Renderer.h"
-#include "SpriteNode.h"
+#include "../include/Node.h"
+#include "../include/Renderer.h"
+#include "../include/SpriteNode.h"
 
 #include <algorithm>
 
@@ -10,7 +10,7 @@ using namespace ge;
 
 //updateable
 void Scene::update(double delta) {
-  for (auto updateable: updateables) {
+  for (auto updateable: children) {
     if (updateable.get()) {
       updateable->update(delta);
     }
@@ -20,17 +20,12 @@ void Scene::update(double delta) {
 void Scene::add(std::shared_ptr<SpriteNode> spriteNode) {
   //check already added
   addRenderable(spriteNode);
-  addUpdateable(spriteNode);
   children.push_back(spriteNode);
   spriteNode->setScene(this);
 }
 
-void Scene::addUpdateable(std::shared_ptr<Updateable> updateable) {
-  updateables.push_back(updateable);
-}
-
 void Scene::addRenderable(std::shared_ptr<Renderable> renderable) {
-  auto zPosition = (*renderable).zPosition;
+  auto zPosition = renderable->zPosition;
   if (renderables.find(zPosition) == renderables.end()) {
     renderables[zPosition] = {renderable};
     zPositions.push_back(zPosition);
@@ -42,11 +37,6 @@ void Scene::addRenderable(std::shared_ptr<Renderable> renderable) {
 }
 
 std::shared_ptr<Node> Scene::remove(std::shared_ptr<Node> node) {
-  auto updateable = std::find(updateables.begin(), updateables.end(), node);
-  if (updateable != updateables.end()) {
-    updateables.erase(updateable);
-  }
-
   auto child = std::find(children.begin(), children.end(), node);
   if (child != children.end()) {
     children.erase(child);
@@ -54,7 +44,7 @@ std::shared_ptr<Node> Scene::remove(std::shared_ptr<Node> node) {
 
   auto renderable = dynamic_cast<Renderable *>(node.get());
   if (!renderable) {
-    if (updateable->get()) {
+    if (child->get()) {
       return node;
     }
     return std::shared_ptr<Node>();
@@ -69,7 +59,7 @@ std::shared_ptr<Node> Scene::remove(std::shared_ptr<Node> node) {
     }
   }
 
-  if (updateable->get()) {
+  if (child->get()) {
     return node;
   }
   return std::shared_ptr<Node>();

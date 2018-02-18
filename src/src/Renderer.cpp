@@ -1,6 +1,6 @@
-#include "Renderer.h"
+#include "../include/Renderer.h"
 
-#include "Window.h"
+#include "../include/Window.h"
 
 using ge::Renderer;
 

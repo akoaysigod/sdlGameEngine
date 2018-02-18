@@ -48,33 +48,39 @@ find_path(
   PATH_SUFFIXES Headers SDL2
 )
 
-include_directories(
-  ${SDL_INCLUDE_DIR}
-  ${SDL_IMAGE_INCLUDE_DIR}
-  ${SDL_TTF_INCLUDE_DIR}
-  ${SDL_MIXER_INCLUDE_DIR}
-)
+#target_include_directories(${PROJECT_NAME} PRIVATE
+#  ${SDL_INCLUDE_DIR}
+#  ${SDL_IMAGE_INCLUDE_DIR}
+#  ${SDL_TTF_INCLUDE_DIR}
+#  ${SDL_MIXER_INCLUDE_DIR}
+#)
 
-#add_executable(${PROJECT_NAME}
 add_library(${PROJECT_NAME}
-  src/Action.cpp
-  src/AnimationAction.cpp
-  src/Easing.cpp
-  src/GameTimer.cpp
-  src/GroupAction.cpp
-  src/MoveAction.cpp
-  src/Node.cpp
-  src/Point.cpp
-  src/Renderer.cpp
-  src/Scene.cpp
-  src/SpriteNode.cpp
-  src/SpriteAtlas.cpp
-  src/SpriteAtlasEntry.cpp
-  src/Texture.cpp
-  src/Window.cpp
-
-  #src/main.cpp
+  src/src/Action.cpp
+  src/src/AnimationAction.cpp
+  src/src/Easing.cpp
+  src/src/GameTimer.cpp
+  src/src/GroupAction.cpp
+  src/src/MoveAction.cpp
+  src/src/Node.cpp
+  src/src/Point.cpp
+  src/src/Renderer.cpp
+  src/src/Scene.cpp
+  src/src/SpriteNode.cpp
+  src/src/SpriteAtlas.cpp
+  src/src/SpriteAtlasEntry.cpp
+  src/src/Texture.cpp
+  src/src/Window.cpp
 )
+
+target_include_directories(${PROJECT_NAME}
+  PUBLIC ${SDL_INCLUDE_DIR}
+  PRIVATE ${SDL_IMAGE_INCLUDE_DIR}
+  PRIVATE ${SDL_TTF_INCLUDE_DIR}
+  PRIVATE ${SDL_MIXER_INCLUDE_DIR}
+  INTERFACE "src/include"
+)
+
 
 if (APPLE)
 	find_library(CFLIB CoreFoundation)

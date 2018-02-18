@@ -3,7 +3,6 @@
 #include <SDL.h>
 
 #include <memory>
-#include <optional>
 #include <string>
 
 namespace ge {

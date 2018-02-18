@@ -1,12 +1,11 @@
 #pragma once
 
-#include "Action.h"
-#include "Position.h"
-#include "Hashable.h"
-#include "Updateable.h"
+#include "../include/Action.h"
+#include "../include/Position.h"
+#include "../include/Hashable.h"
+#include "../include/Updateable.h"
 
 #include <memory>
-#include <optional>
 #include <string>
 #include <vector>
 
@@ -44,6 +43,6 @@ namespace ge {
     std::shared_ptr<Scene> scene;
 
   private:
-    std::optional<std::shared_ptr<Action>> action;
+    std::shared_ptr<Action> action;
   };
 }

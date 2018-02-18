@@ -1,6 +1,6 @@
-#include "SpriteNode.h"
+#include "../include/SpriteNode.h"
 
-#include "Renderer.h"
+#include "../include/Renderer.h"
 
 using namespace ge;
 

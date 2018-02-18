@@ -1,4 +1,4 @@
-#include "Window.h"
+#include "../include/Window.h"
 
 using ge::Window;
 

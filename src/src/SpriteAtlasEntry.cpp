@@ -1,4 +1,4 @@
-#include "SpriteAtlasEntry.h"
+#include "../include/SpriteAtlasEntry.h"
 
 using namespace ge;
 

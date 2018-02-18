@@ -1,6 +1,7 @@
-#include "MoveAction.h"
+#include "../include/MoveAction.h"
 
-#include "Node.h"
+#include "../include/Node.h"
+
 #include <iostream>
 
 using namespace ge;

@@ -1,7 +1,7 @@
-#include "AnimationAction.h"
+#include "../include/AnimationAction.h"
 
-#include "SpriteNode.h"
-#include "Texture.h"
+#include "../include/SpriteNode.h"
+#include "../include/Texture.h"
 
 #include <iostream>
 #include <cstdlib>

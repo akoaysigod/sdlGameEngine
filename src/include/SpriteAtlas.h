@@ -1,13 +1,12 @@
 #pragma once
 
+#include "../include/Texture.h"
+
 #include <SDL.h>
 #include <map>
 #include <memory>
-#include <optional>
 #include <string>
 #include <vector>
-
-#include "Texture.h"
 
 namespace ge {
 class Renderer;
@@ -18,7 +17,7 @@ public:
   SpriteAtlas(const std::string &atlasFileName,
               Texture texture);
 
-  std::optional<std::shared_ptr<Texture>> operator[](const std::string name);
+  std::shared_ptr<Texture> operator[](const std::string name);
   std::vector<std::string> getNames();
 
 private:

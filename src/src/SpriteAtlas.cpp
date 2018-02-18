@@ -1,8 +1,8 @@
-#include "SpriteAtlas.h"
+#include "../include/SpriteAtlas.h"
 
-#include "SpriteAtlasEntry.h"
-#include "Renderer.h"
-#include "String.h"
+#include "../include/SpriteAtlasEntry.h"
+#include "../include/Renderer.h"
+#include "../include/StringHelper.h"
 
 #include <iostream>
 #include <fstream>
@@ -54,22 +54,21 @@ SpriteAtlas::SpriteAtlas(const std::string &atlasFileName,
   }
 }
 
-//make a map for std::shared so they don't keep getting made
-std::optional<std::shared_ptr<Texture>> SpriteAtlas::operator[](const std::string name) {
+std::shared_ptr<Texture> SpriteAtlas::operator[](const std::string name) {
   auto entry = entries[name];
   if (!entry) {
-    return {};
+    return nullptr;
   }
 
   auto cachedTexture = textures[name];
-  if (cachedTexture != nullptr) {
-    return std::optional<std::shared_ptr<Texture>>(cachedTexture);
+  if (cachedTexture) {
+    return cachedTexture;
   }
 
   SDL_Rect rect = entry->getRect();
   auto newTexture = std::make_shared<Texture>(texture.make(rect));
-    textures[name] = newTexture;
-  return std::optional<std::shared_ptr<Texture>>(newTexture);
+  textures[name] = newTexture;
+  return std::shared_ptr<Texture>(newTexture);
 }
 
 std::vector<std::string> SpriteAtlas::getNames() {

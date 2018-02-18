@@ -1,4 +1,4 @@
-#include "GroupAction.h"
+#include "../include/GroupAction.h"
 
 using namespace ge;
 

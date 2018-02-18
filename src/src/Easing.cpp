@@ -1,4 +1,4 @@
-#include "Easing.h"
+#include "../include/Easing.h"
 
 using namespace ge;
 

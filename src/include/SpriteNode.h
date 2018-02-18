@@ -2,9 +2,9 @@
 
 #include <SDL.h>
 
-#include "Node.h"
-#include "Renderable.h"
-#include "Texture.h"
+#include "../include/Node.h"
+#include "../include/Renderable.h"
+#include "../include/Texture.h"
 
 #include <memory>
 
