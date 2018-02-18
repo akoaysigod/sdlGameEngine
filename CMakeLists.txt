@@ -3,7 +3,7 @@
 
 cmake_minimum_required(VERSION 3.9.0)
 
-project(sdltest)
+project(sdl-game-engine)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake")
 
@@ -48,48 +48,44 @@ find_path(
   PATH_SUFFIXES Headers SDL2
 )
 
-#target_include_directories(${PROJECT_NAME} PRIVATE
-#  ${SDL_INCLUDE_DIR}
-#  ${SDL_IMAGE_INCLUDE_DIR}
-#  ${SDL_TTF_INCLUDE_DIR}
-#  ${SDL_MIXER_INCLUDE_DIR}
+add_library(${PROJECT_NAME})
+#  action
+#  src/src/Action.cpp
+#  src/src/AnimationAction.cpp
+#  src/src/Easing.cpp
+#  src/src/GameTimer.cpp
+#  src/src/GroupAction.cpp
+#  src/src/MoveAction.cpp
+#  src/src/Node.cpp
+#  src/src/Point.cpp
+#  src/src/Renderer.cpp
+#  src/src/Scene.cpp
+#  src/src/SpriteNode.cpp
+#  src/src/SpriteAtlas.cpp
+#  src/src/SpriteAtlasEntry.cpp
+#  src/src/Texture.cpp
+#  src/src/Window.cpp
 #)
-
-add_library(${PROJECT_NAME}
-  src/src/Action.cpp
-  src/src/AnimationAction.cpp
-  src/src/Easing.cpp
-  src/src/GameTimer.cpp
-  src/src/GroupAction.cpp
-  src/src/MoveAction.cpp
-  src/src/Node.cpp
-  src/src/Point.cpp
-  src/src/Renderer.cpp
-  src/src/Scene.cpp
-  src/src/SpriteNode.cpp
-  src/src/SpriteAtlas.cpp
-  src/src/SpriteAtlasEntry.cpp
-  src/src/Texture.cpp
-  src/src/Window.cpp
-)
 
 target_include_directories(${PROJECT_NAME}
   PUBLIC ${SDL_INCLUDE_DIR}
   PRIVATE ${SDL_IMAGE_INCLUDE_DIR}
   PRIVATE ${SDL_TTF_INCLUDE_DIR}
   PRIVATE ${SDL_MIXER_INCLUDE_DIR}
-  INTERFACE "src/include"
+  PUBLIC ge/nodes/include
+  #INTERFACE "src/include"
 )
 
+add_subdirectory(ge/)
 
 if (APPLE)
 	find_library(CFLIB CoreFoundation)
-	target_link_libraries(${PROJECT_NAME} ${CFLIB})
+	target_link_libraries(${PROJECT_NAME} PRIVATE ${CFLIB})
 elseif (UNIX)
   # sudo apt-get install uuid-dev
   find_package(libuuid REQUIRED)
   include_directories(${LIBUUID_INCLUDE_DIR})
-  target_link_libraries(${PROJECT_NAME} ${LIBUUID_LIBRARY})
+  target_link_libraries(${PROJECT_NAME} PRIVATE ${LIBUUID_LIBRARY})
 endif()
 
 set(MAC_LIB_DIR /usr/local/lib/)
@@ -125,8 +121,12 @@ find_library(
 
 target_link_libraries(
   ${PROJECT_NAME}
-  ${SDL_LIBRARY}
-  ${SDL_IMAGE_LIBRARY}
-  ${SDL_TTF_LIBRARY}
-  ${SDL_MIXER_LIBRARY}
+  PRIVATE ${SDL_LIBRARY}
+  PRIVATE ${SDL_IMAGE_LIBRARY}
+  PRIVATE ${SDL_TTF_LIBRARY}
+  PRIVATE ${SDL_MIXER_LIBRARY}
+  PUBLIC actions
+  PUBLIC nodes
+  PUBLIC rendering
+  PUBLIC utils
 )
