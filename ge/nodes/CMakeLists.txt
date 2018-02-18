@@ -6,4 +6,5 @@ add_library(nodes
 target_include_directories(nodes
   PUBLIC include/
   PUBLIC ${SDL_INCLUDE_DIR}
+  PRIVATE ${SDL_IMAGE_INCLUDE_DIR}
 )

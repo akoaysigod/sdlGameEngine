@@ -49,31 +49,12 @@ find_path(
 )
 
 add_library(${PROJECT_NAME})
-#  action
-#  src/src/Action.cpp
-#  src/src/AnimationAction.cpp
-#  src/src/Easing.cpp
-#  src/src/GameTimer.cpp
-#  src/src/GroupAction.cpp
-#  src/src/MoveAction.cpp
-#  src/src/Node.cpp
-#  src/src/Point.cpp
-#  src/src/Renderer.cpp
-#  src/src/Scene.cpp
-#  src/src/SpriteNode.cpp
-#  src/src/SpriteAtlas.cpp
-#  src/src/SpriteAtlasEntry.cpp
-#  src/src/Texture.cpp
-#  src/src/Window.cpp
-#)
 
 target_include_directories(${PROJECT_NAME}
   PUBLIC ${SDL_INCLUDE_DIR}
   PRIVATE ${SDL_IMAGE_INCLUDE_DIR}
   PRIVATE ${SDL_TTF_INCLUDE_DIR}
   PRIVATE ${SDL_MIXER_INCLUDE_DIR}
-  PUBLIC ge/nodes/include
-  #INTERFACE "src/include"
 )
 
 add_subdirectory(ge/)
@@ -121,7 +102,7 @@ find_library(
 
 target_link_libraries(
   ${PROJECT_NAME}
-  PRIVATE ${SDL_LIBRARY}
+  PUBLIC ${SDL_LIBRARY}
   PRIVATE ${SDL_IMAGE_LIBRARY}
   PRIVATE ${SDL_TTF_LIBRARY}
   PRIVATE ${SDL_MIXER_LIBRARY}
