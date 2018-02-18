@@ -2,6 +2,7 @@
 
 #include "../../../nodes/include/ge/Hashable.h"
 
+#include <memory>
 #include <string>
 
 namespace ge {

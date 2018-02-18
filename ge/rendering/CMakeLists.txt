@@ -8,4 +8,5 @@ add_library(rendering
 target_include_directories(rendering
   PUBLIC include/
   PUBLIC ${SDL_INCLUDE_DIR}
+  PRIVATE ${SDL_IMAGE_INCLUDE_DIR}
 )

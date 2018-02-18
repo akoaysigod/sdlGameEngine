@@ -2,7 +2,6 @@
 
 #include "Texture.h"
 
-#include <SDL.h>
 #include <map>
 #include <memory>
 #include <string>

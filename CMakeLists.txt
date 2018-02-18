@@ -48,7 +48,9 @@ find_path(
   PATH_SUFFIXES Headers SDL2
 )
 
-add_library(${PROJECT_NAME})
+add_subdirectory(ge/)
+#set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+add_library(${PROJECT_NAME} m.cpp)
 
 target_include_directories(${PROJECT_NAME}
   PUBLIC ${SDL_INCLUDE_DIR}
@@ -56,8 +58,6 @@ target_include_directories(${PROJECT_NAME}
   PRIVATE ${SDL_TTF_INCLUDE_DIR}
   PRIVATE ${SDL_MIXER_INCLUDE_DIR}
 )
-
-add_subdirectory(ge/)
 
 if (APPLE)
 	find_library(CFLIB CoreFoundation)

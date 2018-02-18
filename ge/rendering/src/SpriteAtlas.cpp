@@ -8,8 +8,6 @@
 #include <fstream>
 #include <iterator>
 
-#include <SDL_image.h>
-
 using namespace ge;
 
 SpriteAtlas::SpriteAtlas(const std::string &atlasFileName,
