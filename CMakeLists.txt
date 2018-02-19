@@ -58,7 +58,9 @@ target_include_directories(${PROJECT_NAME}
   PUBLIC ${SDL_INCLUDE_DIR}
   PRIVATE ${SDL_IMAGE_INCLUDE_DIR}
   PRIVATE ${SDL_TTF_INCLUDE_DIR}
-  PRIVATE ${SDL_MIXER_INCLUDE_DIR}
+  #need to hide this somehow at some point
+  #more abstraction yo
+  PUBLIC ${SDL_MIXER_INCLUDE_DIR}
 )
 
 if (APPLE)
