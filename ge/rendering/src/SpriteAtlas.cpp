@@ -5,7 +5,8 @@
 #include "../include/ge/Texture.h"
 //#include "../../utils/include/ge/StringHelper.h"
 
-//#include <iostream>
+#include <cstdlib>
+#include <iostream>
 //#include <fstream>
 //#include <iterator>
 
@@ -59,7 +60,8 @@ SpriteAtlas::SpriteAtlas(const SpriteAtlasData &data,
 
 std::shared_ptr<Texture> SpriteAtlas::getTexture(const std::string &name) {
   if (data.contents.find(name) == data.contents.end()) {
-    return nullptr;
+    std::cout << name << " not found in atlas.\n";
+    std::exit(EXIT_FAILURE);
   }
 
   auto cachedTexture = textures[name];

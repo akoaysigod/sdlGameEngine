@@ -17,7 +17,7 @@ namespace ge {
     //updateable
     virtual void update(double delta);
 
-    void add(std::shared_ptr<SpriteNode> spriteNode);
+    void add(std::shared_ptr<Node> node);
     void addRenderable(std::shared_ptr<Renderable> renderable);
 
     std::shared_ptr<Node> remove(std::shared_ptr<Node> node);

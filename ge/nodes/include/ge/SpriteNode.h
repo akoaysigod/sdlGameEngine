@@ -21,10 +21,6 @@ namespace ge {
     std::shared_ptr<Texture> getTexture();
     void setTexture(std::shared_ptr<Texture> texture);
 
-    // hashable
-    bool operator==(const Hashable &rhs) const;
-    std::string getUUID() const;
-
   private:
     std::shared_ptr<Texture> texture;
   };

@@ -17,11 +17,14 @@ void Scene::update(double delta) {
   }
 }
 
-void Scene::add(std::shared_ptr<SpriteNode> spriteNode) {
+void Scene::add(std::shared_ptr<Node> node) {
   //check already added
-  addRenderable(spriteNode);
-  children.push_back(spriteNode);
-  spriteNode->setScene(this);
+  auto renderable = std::dynamic_pointer_cast<Renderable>(node);
+  if (renderable) {
+    addRenderable(renderable);
+  }
+  children.push_back(node);
+  node->setScene(this);
 }
 
 void Scene::addRenderable(std::shared_ptr<Renderable> renderable) {
@@ -42,7 +45,7 @@ std::shared_ptr<Node> Scene::remove(std::shared_ptr<Node> node) {
     children.erase(child);
   }
 
-  auto renderable = dynamic_cast<Renderable *>(node.get());
+  auto renderable = std::dynamic_pointer_cast<Renderable>(node);
   if (!renderable) {
     if (child->get()) {
       return node;
@@ -51,11 +54,10 @@ std::shared_ptr<Node> Scene::remove(std::shared_ptr<Node> node) {
   }
 
   for (auto i: zPositions) {
-    for (auto it = this->renderables[i].begin(); it != this->renderables[i].end(); it++) {
-      if ((*it).get() == renderable) {
-        this->renderables[i].erase(it);
-        return node;
-      }
+    auto found = std::find(renderables[i].begin(), renderables[i].end(), renderable);
+    if (found != renderables[i].end()) {
+      renderables[i].erase(found);
+      return node;
     }
   }
 

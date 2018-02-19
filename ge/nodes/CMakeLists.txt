@@ -1,5 +1,6 @@
 add_library(nodes
   src/Node.cpp
+  src/RectNode.cpp
   src/Scene.cpp
   src/SpriteNode.cpp
 )

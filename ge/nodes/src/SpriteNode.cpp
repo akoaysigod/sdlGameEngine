@@ -36,12 +36,3 @@ void SpriteNode::render(const std::shared_ptr<Renderer> &renderer) {
     }
   }
 }
-
-// hashable
-bool SpriteNode::operator==(const Hashable &rhs) const {
-  return this->getUUID() == rhs.getUUID();
-}
-
-std::string SpriteNode::getUUID() const {
-  return uuid;
-}
