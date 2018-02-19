@@ -32,8 +32,9 @@ void Renderer::renderCopyEx(SDL_Texture *texture,
 void Renderer::renderRect(const SDL_Rect &rect,
                           const int &r,
                           const int &g,
-                          const int &b) const {
-  SDL_SetRenderDrawColor(getCPtr(), r, g, b, 255);
+                          const int &b,
+                          const int &a) const {
+  SDL_SetRenderDrawColor(getCPtr(), r, g, b, a);
   SDL_RenderFillRect(getCPtr(), &rect);
   //technically don't need to set this back if we weren't using an alpha background.
   SDL_SetRenderDrawColor(getCPtr(), this->r, this->g, this->b, 255);

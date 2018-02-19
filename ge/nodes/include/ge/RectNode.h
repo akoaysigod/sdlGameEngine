@@ -13,6 +13,7 @@ namespace ge {
     RectNode(const int &r,
              const int &g,
              const int &b,
+             const int &a,
              const int &w,
              const int &h);
 
@@ -21,10 +22,11 @@ namespace ge {
     //renderable
     void render(const std::shared_ptr<Renderer> &renderer);
 
-  private:
+  protected:
     const int r;
     const int g;
     const int b;
+    const int a;
     const int w;
     const int h;
   };

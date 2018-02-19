@@ -21,7 +21,8 @@ public:
   void renderRect(const SDL_Rect &rect,
                   const int &r,
                   const int &g,
-                  const int &b) const;
+                  const int &b,
+                  const int &a) const;
 
   void present();
 private:
