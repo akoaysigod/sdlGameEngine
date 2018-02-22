@@ -47,7 +47,7 @@ std::shared_ptr<Node> Scene::remove(std::shared_ptr<Node> node) {
 
   auto renderable = std::dynamic_pointer_cast<Renderable>(node);
   if (!renderable) {
-    if (child->get()) {
+    if (child != children.end()) {
       return node;
     }
     return std::shared_ptr<Node>();
@@ -61,7 +61,7 @@ std::shared_ptr<Node> Scene::remove(std::shared_ptr<Node> node) {
     }
   }
 
-  if (child->get()) {
+  if (child != children.end()) {
     return node;
   }
   return std::shared_ptr<Node>();

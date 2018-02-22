@@ -17,10 +17,8 @@ namespace ge {
     //updateable
     virtual void update(double delta);
 
-    void add(std::shared_ptr<Node> node);
-    void addRenderable(std::shared_ptr<Renderable> renderable);
-
-    std::shared_ptr<Node> remove(std::shared_ptr<Node> node);
+    virtual void add(std::shared_ptr<Node> node);
+    virtual std::shared_ptr<Node> remove(std::shared_ptr<Node> node);
 
     void render(const std::shared_ptr<Renderer> &renderer);
 
@@ -32,5 +30,6 @@ namespace ge {
   private:
     std::map<int, std::vector<std::shared_ptr<Renderable>>> renderables = {};
     std::vector<int> zPositions = {};
+    void addRenderable(std::shared_ptr<Renderable> renderable);
   };
 }
