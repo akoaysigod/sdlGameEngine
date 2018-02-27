@@ -11,7 +11,7 @@ using namespace ge;
 //updateable
 void Scene::update(double delta) {
   for (auto updateable: children) {
-    if (updateable.get()) {
+    if (updateable) {
       updateable->update(delta);
     }
   }
@@ -47,10 +47,10 @@ std::shared_ptr<Node> Scene::remove(std::shared_ptr<Node> node) {
 
   auto renderable = std::dynamic_pointer_cast<Renderable>(node);
   if (!renderable) {
-    if (child->get()) {
+    if (child != children.end()) {
       return node;
     }
-    return std::shared_ptr<Node>();
+    return nullptr;
   }
 
   for (auto i: zPositions) {
@@ -61,10 +61,10 @@ std::shared_ptr<Node> Scene::remove(std::shared_ptr<Node> node) {
     }
   }
 
-  if (child->get()) {
+  if (child != children.end()) {
     return node;
   }
-  return std::shared_ptr<Node>();
+  return nullptr;
 }
 
 std::vector<std::shared_ptr<Node>> Scene::getChildren() {
@@ -74,7 +74,7 @@ std::vector<std::shared_ptr<Node>> Scene::getChildren() {
 void Scene::render(const std::shared_ptr<Renderer> &renderer) {
   for (auto i: zPositions) {
     for (auto renderable: renderables[i]) {
-      if (renderable.get()) {
+      if (renderable) {
         renderable->render(renderer);
       }
     }
