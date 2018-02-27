@@ -19,8 +19,10 @@ namespace ge {
 
     virtual void add(std::shared_ptr<Node> node);
     virtual std::shared_ptr<Node> remove(std::shared_ptr<Node> node);
-    virtual void render(const std::shared_ptr<Renderer> &renderer);
-    virtual std::vector<std::shared_ptr<Node>> getChildren();
+
+    void render(const std::shared_ptr<Renderer> &renderer);
+
+    std::vector<std::shared_ptr<Node>> getChildren();
 
   protected:
     std::vector<std::shared_ptr<Node>> children = {};
@@ -28,7 +30,6 @@ namespace ge {
   private:
     std::map<int, std::vector<std::shared_ptr<Renderable>>> renderables = {};
     std::vector<int> zPositions = {};
-    
     void addRenderable(std::shared_ptr<Renderable> renderable);
   };
 }
