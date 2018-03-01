@@ -4,7 +4,6 @@
 
 #include <functional>
 #include <memory>
-#include <optional>
 
 namespace ge {
   class Node;
@@ -15,8 +14,7 @@ namespace ge {
   public:
     Action(bool isForever,
            double duration,
-           Easing func,
-           std::optional<ActionCompletion> completion);
+           Easing func);
     virtual void run(Node *node, double delta);
     void setCompletion(ActionCompletion completion);
     bool completed();
@@ -28,7 +26,7 @@ namespace ge {
     const bool isForever;
     double duration;
     Easing func;
-    std::optional<ActionCompletion> completion;
+    ActionCompletion completion;
     bool hasCompleted = false;
     double pointAtTime();
   };

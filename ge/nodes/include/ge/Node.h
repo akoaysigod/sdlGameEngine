@@ -35,7 +35,7 @@ namespace ge {
     //this should be a shared_ptr but for some reason using
     //shared_from_this in Scene::add is causing a bad_weak_ptr exception
     //even though scene is contained within a shared_ptr
-    void setScene(Scene *scene);
+    void setScene(std::shared_ptr<Scene> scene);
 
   protected:
     std::vector<std::shared_ptr<Node>> children;

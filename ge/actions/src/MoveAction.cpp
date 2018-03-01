@@ -10,9 +10,8 @@ MoveAction::MoveAction(bool isMoveTo,
                        bool isForever,
                        int x,
                        int y,
-                       double duration,
-                       std::optional<ActionCompletion> completion):
-  Action(isForever, duration, Easing::linear(), completion),
+                       double duration):
+  Action(isForever, duration, Easing::linear()),
   isMoveTo(isMoveTo),
   x(x),
   y(y) {}

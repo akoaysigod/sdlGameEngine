@@ -12,7 +12,7 @@ namespace ge {
   class Renderer;
   class SpriteNode;
 
-  class Scene: std::enable_shared_from_this<Scene>, public Updateable {
+  class Scene: public std::enable_shared_from_this<Scene>, public Updateable {
   public:
     //updateable
     virtual void update(double delta);

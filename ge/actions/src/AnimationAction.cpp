@@ -10,10 +10,9 @@ using namespace ge;
 
 AnimationAction::AnimationAction(std::vector<std::shared_ptr<Texture>> frames,
                                  double frameTime,
-                                 std::optional<std::shared_ptr<Texture>> restoreTexture,
-                                 bool isForever,
-                                 std::optional<ActionCompletion> completion):
-  Action(isForever, 0.0, Easing::linear(), completion),
+                                 std::shared_ptr<Texture> restoreTexture,
+                                 bool isForever):
+  Action(isForever, 0.0, Easing::linear()),
   frames(frames), frameTime(frameTime), restoreTexture(restoreTexture) {}
 
 void AnimationAction::run(Node *node, double delta) {
@@ -37,8 +36,8 @@ void AnimationAction::run(Node *node, double delta) {
     if (isForever) {
       frame = 0;
     }
-    else if (restoreTexture.has_value()) {
-      spriteNode->setTexture(*restoreTexture);
+    else if (restoreTexture) {
+      spriteNode->setTexture(restoreTexture);
     }
   }
 }

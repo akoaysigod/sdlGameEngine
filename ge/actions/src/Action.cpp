@@ -6,12 +6,10 @@ using namespace ge;
 
 Action::Action(bool isForever,
                double duration,
-               Easing func,
-               std::optional<ActionCompletion> completion):
+               Easing func):
   isForever(isForever),
   duration(duration),
-  func(func),
-  completion(completion) {}
+  func(func) {}
 
 double Action::pointAtTime() {
   return timer / duration;
@@ -27,8 +25,8 @@ void Action::run(Node *node, double delta) {
   timer += delta;
 
   if (timer >= duration) {
-    if (completion.has_value()) {
-      (*completion)();
+    if (completion) {
+      completion();
     }
 
     if (isForever) {

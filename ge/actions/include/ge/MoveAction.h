@@ -2,8 +2,6 @@
 
 #include "../include/ge/Action.h"
 
-#include <optional>
-
 namespace ge {
   class MoveAction: public ge::Action {
   public:
@@ -11,8 +9,7 @@ namespace ge {
                bool isForever,
                int x,
                int y,
-               double duration,
-               std::optional<ActionCompletion> completion);
+               double duration);
     void run(Node *node, double delta);
 
   private:

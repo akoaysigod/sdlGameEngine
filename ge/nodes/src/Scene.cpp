@@ -24,7 +24,7 @@ void Scene::add(std::shared_ptr<Node> node) {
     addRenderable(renderable);
   }
   children.push_back(node);
-  node->setScene(this);
+  node->setScene(shared_from_this());
 }
 
 void Scene::addRenderable(std::shared_ptr<Renderable> renderable) {

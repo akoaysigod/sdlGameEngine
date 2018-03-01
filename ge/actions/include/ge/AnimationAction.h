@@ -11,9 +11,8 @@ namespace ge {
   public:
     AnimationAction(std::vector<std::shared_ptr<Texture>> frames,
                     double frameTime,
-                    std::optional<std::shared_ptr<Texture>> restoreTexture,
-                    bool isForever,
-                    std::optional<ActionCompletion> completion);
+                    std::shared_ptr<Texture> restoreTexture,
+                    bool isForever);
     void run(Node *node, double delta);
 
   private:
@@ -21,6 +20,6 @@ namespace ge {
     double currentTime = 0.0;
     const std::vector<std::shared_ptr<Texture>> frames;
     const double frameTime;
-    const std::optional<std::shared_ptr<Texture>> restoreTexture;
+    const std::shared_ptr<Texture> restoreTexture;
   };
 }

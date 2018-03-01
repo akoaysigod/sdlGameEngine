@@ -53,6 +53,6 @@ void Node::add(std::shared_ptr<Node> node) {
   children.push_back(node);
 }
 
-void Node::setScene(Scene *scene) {
-  this->scene = std::shared_ptr<Scene>(scene);
+void Node::setScene(std::shared_ptr<Scene> scene) {
+  this->scene = scene;//std::shared_ptr<Scene>(scene);
 }
