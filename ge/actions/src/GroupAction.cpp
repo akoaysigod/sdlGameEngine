@@ -17,7 +17,7 @@ GroupAction GroupAction::init(std::vector<std::shared_ptr<Action>> actions,
   return GroupAction(actions, isForever, duration);
 }
 
-void GroupAction::run(Node *node, double delta) {
+void GroupAction::run(std::shared_ptr<Node> node, double delta) {
   for (auto action: actions) {
     action->run(node, delta);
   }

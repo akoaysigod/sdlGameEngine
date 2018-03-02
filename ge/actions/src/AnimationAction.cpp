@@ -15,8 +15,8 @@ AnimationAction::AnimationAction(std::vector<std::shared_ptr<Texture>> frames,
   Action(isForever, 0.0, Easing::linear()),
   frames(frames), frameTime(frameTime), restoreTexture(restoreTexture) {}
 
-void AnimationAction::run(Node *node, double delta) {
-  SpriteNode *spriteNode = dynamic_cast<SpriteNode *>(node);
+void AnimationAction::run(std::shared_ptr<Node> node, double delta) {
+  auto spriteNode = std::dynamic_pointer_cast<SpriteNode>(node);
   if (spriteNode == nullptr) {
     std::cout << "Animations can only be used on SpriteNodes.\n";
     std::abort();

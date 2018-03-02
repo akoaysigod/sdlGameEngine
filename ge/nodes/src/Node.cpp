@@ -23,7 +23,7 @@ void Node::update(double delta) {
       this->action = nullptr;
     }
     else {
-      action->run(this, delta);
+      action->run(shared_from_this(), delta);
     }
   }
 

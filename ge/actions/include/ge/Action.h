@@ -15,7 +15,7 @@ namespace ge {
     Action(bool isForever,
            double duration,
            Easing func);
-    virtual void run(Node *node, double delta);
+    virtual void run(std::shared_ptr<Node> node, double delta);
     void setCompletion(ActionCompletion completion);
     bool completed();
     void setEasingFunction(Easing func);

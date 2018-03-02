@@ -21,7 +21,7 @@ double Action::getDuration() {
   return duration;
 }
 
-void Action::run(Node *node, double delta) {
+void Action::run(std::shared_ptr<Node> node, double delta) {
   timer += delta;
 
   if (timer >= duration) {

@@ -10,7 +10,7 @@ namespace ge {
                int x,
                int y,
                double duration);
-    void run(Node *node, double delta);
+    void run(std::shared_ptr<Node> node, double delta);
 
   private:
     bool isMoveTo;
@@ -19,6 +19,6 @@ namespace ge {
     int y;
     int sPosY = 0;
 
-    void moveBy(Node *node, int x, int y);
+    void moveBy(std::shared_ptr<Node> node, int x, int y);
   };
 }

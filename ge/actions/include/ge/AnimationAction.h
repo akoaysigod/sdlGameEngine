@@ -2,6 +2,7 @@
 
 #include "../include/ge/Action.h"
 
+#include <memory>
 #include <vector>
 
 namespace ge {
@@ -13,7 +14,7 @@ namespace ge {
                     double frameTime,
                     std::shared_ptr<Texture> restoreTexture,
                     bool isForever);
-    void run(Node *node, double delta);
+    void run(std::shared_ptr<Node> node, double delta);
 
   private:
     int frame = 0;

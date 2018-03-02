@@ -10,7 +10,7 @@ namespace ge {
   public:
     static GroupAction init(std::vector<std::shared_ptr<Action>> actions,
                             bool isForever);
-    void run(Node *node, double delta);
+    void run(std::shared_ptr<Node> node, double delta);
 
   private:
     GroupAction(std::vector<std::shared_ptr<Action>> actions,

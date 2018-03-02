@@ -16,7 +16,7 @@ MoveAction::MoveAction(bool isMoveTo,
   x(x),
   y(y) {}
 
-void MoveAction::run(Node *node, double delta) {
+void MoveAction::run(std::shared_ptr<Node> node, double delta) {
   if (isMoveTo) {
     x = x - node->x;
     y = y - node->y;
@@ -33,7 +33,7 @@ void MoveAction::run(Node *node, double delta) {
   Action::run(node, delta);
 }
 
-void MoveAction::moveBy(Node *node, int x, int y) {
+void MoveAction::moveBy(std::shared_ptr<Node> node, int x, int y) {
   auto time = pointAtTime();
 
   node->x = sPosX + (x * time);
