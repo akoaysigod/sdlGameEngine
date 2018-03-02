@@ -6,13 +6,15 @@
 //but it won't build the umbrella library like on mac/linux
 //without a source file being added to the add_library step
 
-class Init {
-public:
-  static bool SDL();
-  static bool SDLAudio();
-  static bool SDLTTF();
+namespace ge {
+  class Init {
+  public:
+    static bool SDL();
+    static bool SDLAudio();
+    static bool SDLTTF();
 
-  static void quitSDL();
-  static void quitSDLAudio();
-  static void quitTTF();
-};
+    static void quitSDL();
+    static void quitSDLAudio();
+    static void quitTTF();
+  };
+}
