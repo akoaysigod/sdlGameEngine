@@ -54,5 +54,5 @@ void Node::add(std::shared_ptr<Node> node) {
 }
 
 void Node::setScene(std::shared_ptr<Scene> scene) {
-  this->scene = scene;//std::shared_ptr<Scene>(scene);
+  this->scene = scene;
 }

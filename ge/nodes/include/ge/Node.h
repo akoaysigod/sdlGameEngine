@@ -40,7 +40,7 @@ namespace ge {
   protected:
     std::vector<std::shared_ptr<Node>> children;
     const std::string uuid;
-    std::shared_ptr<Scene> scene;
+    std::weak_ptr<Scene> scene;
 
   private:
     std::shared_ptr<Action> action;
