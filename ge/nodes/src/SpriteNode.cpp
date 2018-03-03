@@ -16,12 +16,10 @@ void SpriteNode::setTexture(std::shared_ptr<Texture> texture) {
 
 SDL_Rect SpriteNode::getBounds() {
   if (!parent.expired()) {
-    auto parent = std::dynamic_pointer_cast<SpriteNode>(this->parent.lock());
-    if (parent) {
-      int px = parent->getBounds().x;
-      int py = parent->getBounds().y;
-      return texture->getBounds(x + px, y + py);
-    }
+    auto parentBounds = this->parent.lock()->getBounds();
+    int px = parentBounds.x;
+    int py = parentBounds.y;
+    return texture->getBounds(x + px, y + py);
   }
   return texture->getBounds(x, y);
 }
