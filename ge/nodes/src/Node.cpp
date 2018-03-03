@@ -58,6 +58,7 @@ std::shared_ptr<Node> Node::remove(std::shared_ptr<Node> node) {
   auto nodeIt = std::find(children.begin(), children.end(), node);
   if (nodeIt != children.end()) {
     children.erase(nodeIt);
+    (*nodeIt)->parent.reset();
     return *nodeIt;
   }
   return nullptr;
