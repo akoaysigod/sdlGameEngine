@@ -1,4 +1,5 @@
 add_library(rendering
+  src/Font.cpp
   src/Renderer.cpp
   src/SpriteAtlas.cpp
   src/SpriteAtlasEntry.cpp
