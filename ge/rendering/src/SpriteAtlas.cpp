@@ -83,3 +83,11 @@ std::shared_ptr<Texture> SpriteAtlas::operator[](const std::string &name) {
 std::vector<std::string> SpriteAtlas::getNames() {
   return data.names;
 }
+
+std::vector<std::shared_ptr<ge::Texture>> SpriteAtlas::getTextures(const std::vector<std::string> &names) {
+  auto ret = std::vector<std::shared_ptr<ge::Texture>>();
+  for (auto name: names) {
+    ret.push_back(getTexture(name));
+  }
+  return ret;
+}

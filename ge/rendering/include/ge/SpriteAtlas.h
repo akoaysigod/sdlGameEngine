@@ -22,6 +22,7 @@ namespace ge {
     std::shared_ptr<Texture> operator[](const std::string &name);
     std::shared_ptr<Texture> getTexture(const std::string &name);
     std::vector<std::string> getNames();
+    std::vector<std::shared_ptr<ge::Texture>> getTextures(const std::vector<std::string> &names);
 
   private:
     SpriteAtlasData data;

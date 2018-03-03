@@ -16,6 +16,10 @@ void Node::setPosition(Position position) {
   y = position.y;
 }
 
+SDL_Rect Node::getBounds() {
+  return {x, y, 0, 0};
+}
+
 //updateable
 void Node::update(double delta) {
   if (action) {

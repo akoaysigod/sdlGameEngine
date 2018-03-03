@@ -1,5 +1,7 @@
 #pragma once
 
+#include <SDL.h>
+
 #include "../../../actions/include/ge/Action.h"
 #include "../../../utils/include/ge/Position.h"
 #include "Hashable.h"
@@ -21,6 +23,7 @@ namespace ge {
     int y = 0;
     Position getPosition();
     void setPosition(Position position);
+    virtual SDL_Rect getBounds();
 
     void setAction(std::shared_ptr<Action> action);
     bool hasAction();
