@@ -1,6 +1,7 @@
 #include "../include/ge/MoveAction.h"
 
 #include "../../nodes/include/ge/Node.h"
+#include "../../utils/include/ge/Point.h"
 
 #include <iostream>
 
@@ -15,6 +16,15 @@ MoveAction::MoveAction(bool isMoveTo,
   isMoveTo(isMoveTo),
   x(x),
   y(y) {}
+
+std::shared_ptr<MoveAction> MoveAction::makeMoveAction(const int &startX,
+                                                       const int &startY,
+                                                       const int &toX,
+                                                       const int &toY,
+                                                       const double &speed) {
+  auto duration = speed * ge::Point(startX, startY).distance(ge::Point(toX, toY));
+  return std::make_shared<MoveAction>(true, false, toX, toY, duration);
+}
 
 void MoveAction::run(std::shared_ptr<Node> node, double delta) {
   if (isMoveTo) {

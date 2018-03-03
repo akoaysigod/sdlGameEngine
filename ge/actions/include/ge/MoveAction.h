@@ -2,6 +2,8 @@
 
 #include "../include/ge/Action.h"
 
+#include <memory>
+
 namespace ge {
   class MoveAction: public ge::Action {
   public:
@@ -11,6 +13,12 @@ namespace ge {
                int y,
                double duration);
     void run(std::shared_ptr<Node> node, double delta);
+
+    static std::shared_ptr<MoveAction> makeMoveAction(const int &startX,
+                                                      const int &startY,
+                                                      const int &toX,
+                                                      const int &toY,
+                                                      const double &speed);
 
   private:
     bool isMoveTo;
