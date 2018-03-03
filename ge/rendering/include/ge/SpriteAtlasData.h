@@ -16,6 +16,7 @@ namespace ge {
   class SpriteAtlasData {
   public:
     SpriteAtlasData() {}
+    std::string resource;
     std::vector<std::string> names;
     std::set<std::string> contents;
     std::map<std::string, Entry> entries;
