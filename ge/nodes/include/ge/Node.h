@@ -49,8 +49,6 @@ namespace ge {
     const std::string uuid;
     std::weak_ptr<Scene> scene;
     std::weak_ptr<Node> parent;
-
-  private:
     std::shared_ptr<Action> action;
   };
 }
