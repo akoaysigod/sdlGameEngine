@@ -51,8 +51,16 @@ std::string Node::getUUID() const {
 
 void Node::add(std::shared_ptr<Node> node) {
   children.push_back(node);
+  node->parent = shared_from_this();
 }
 
 void Node::setScene(std::shared_ptr<Scene> scene) {
   this->scene = scene;
+}
+
+std::shared_ptr<Node> Node::getParent() const {
+  if (!parent.expired()) {
+    return parent.lock();
+  }
+  return nullptr;
 }
