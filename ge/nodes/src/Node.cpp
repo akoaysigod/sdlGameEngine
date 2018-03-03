@@ -54,6 +54,15 @@ void Node::add(std::shared_ptr<Node> node) {
   node->parent = shared_from_this();
 }
 
+std::shared_ptr<Node> Node::remove(std::shared_ptr<Node> node) {
+  auto nodeIt = std::find(children.begin(), children.end(), node);
+  if (nodeIt != children.end()) {
+    children.erase(nodeIt);
+    return *nodeIt;
+  }
+  return nullptr;
+}
+
 void Node::setScene(std::shared_ptr<Scene> scene) {
   this->scene = scene;
 }
@@ -63,4 +72,11 @@ std::shared_ptr<Node> Node::getParent() const {
     return parent.lock();
   }
   return nullptr;
+}
+
+void Node::removeFromParent() {
+  if (parent.expired()) {
+    return;
+  }
+  (parent.lock())->remove(shared_from_this());
 }

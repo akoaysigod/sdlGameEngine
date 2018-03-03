@@ -33,10 +33,13 @@ namespace ge {
     bool operator==(const Hashable &rhs) const;
 
     void add(std::shared_ptr<Node> node);
+    std::shared_ptr<Node> remove(std::shared_ptr<Node> node);
 
     void setScene(std::shared_ptr<Scene> scene);
 
     std::shared_ptr<Node> getParent() const;
+
+    void removeFromParent();
 
   protected:
     std::vector<std::shared_ptr<Node>> children;
