@@ -15,6 +15,14 @@ void SpriteNode::setTexture(std::shared_ptr<Texture> texture) {
 }
 
 SDL_Rect SpriteNode::getBounds() {
+  if (!parent.expired()) {
+    auto parent = std::dynamic_pointer_cast<SpriteNode>(this->parent.lock());
+    if (parent) {
+      int px = parent->getBounds().x;
+      int py = parent->getBounds().y;
+      return texture->getBounds(x + px, y + py);
+    }
+  }
   return texture->getBounds(x, y);
 }
 
@@ -23,16 +31,11 @@ void SpriteNode::render(const std::shared_ptr<Renderer> &renderer) {
   renderer->renderCopy(texture->getCPtr(), texture->getClipRect(), getBounds());
 
   for (auto child: children) {
-    auto node = child.get();
-    auto spriteNode = dynamic_cast<SpriteNode *>(node);
-    if (spriteNode != nullptr) {
-      auto bounds = spriteNode->getBounds();
-      bounds.x += x;
-      bounds.y += y;
-
+    auto spriteNode = std::dynamic_pointer_cast<SpriteNode>(child);
+    if (spriteNode) {
       renderer->renderCopy(spriteNode->getTexture()->getCPtr(),
                            spriteNode->getTexture()->getClipRect(),
-                           bounds);
+                           spriteNode->getBounds());
     }
   }
 }
