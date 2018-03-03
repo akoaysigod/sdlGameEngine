@@ -24,4 +24,11 @@ SDL_Rect RectNode::getBounds() {
 //renderable
 void RectNode::render(const std::shared_ptr<Renderer> &renderer) {
   renderer->renderRect(getBounds(), r, g, b, a);
+
+  for (auto child: children) {
+    auto renderable = std::dynamic_pointer_cast<Renderable>(child);
+    if (renderable) {
+      renderable->render(renderer);
+    }
+  }
 }

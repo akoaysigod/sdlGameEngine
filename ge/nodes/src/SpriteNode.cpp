@@ -28,12 +28,14 @@ SDL_Rect SpriteNode::getBounds() {
 void SpriteNode::render(const std::shared_ptr<Renderer> &renderer) {
   renderer->renderCopy(texture->getCPtr(), texture->getClipRect(), getBounds());
 
+  // this is repeated in RectNode
+  // could make a private RenderableNode they both inherit from
+  // and call super here and in RectNode
+  // can probably refactor getBounds some how too
   for (auto child: children) {
-    auto spriteNode = std::dynamic_pointer_cast<SpriteNode>(child);
-    if (spriteNode) {
-      renderer->renderCopy(spriteNode->getTexture()->getCPtr(),
-                           spriteNode->getTexture()->getClipRect(),
-                           spriteNode->getBounds());
+    auto renderable = std::dynamic_pointer_cast<Renderable>(child);
+    if (renderable) {
+      renderable->render(renderer);
     }
   }
 }
