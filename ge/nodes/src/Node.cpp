@@ -76,7 +76,9 @@ void Node::update(double delta) {
   }
 
   for (auto child: children) {
-    child->update(delta);
+    if (child) {
+      child->update(delta);
+    }
   }
 }
 
@@ -131,5 +133,8 @@ void Node::removeFromParent() {
 }
 
 bool Node::hasParent() {
-  return !parent.expired() && !scene.expired();
+  if (!parent.expired() || !scene.expired()) {
+    return true;
+  }
+  return false;
 }

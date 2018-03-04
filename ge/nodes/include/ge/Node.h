@@ -48,7 +48,7 @@ namespace ge {
     void add(std::shared_ptr<Node> node);
     std::shared_ptr<Node> remove(std::shared_ptr<Node> node);
 
-    void setScene(std::shared_ptr<Scene> scene);
+    virtual void setScene(std::shared_ptr<Scene> scene);
 
     std::shared_ptr<Node> getParent() const;
 
