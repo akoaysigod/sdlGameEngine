@@ -1,6 +1,5 @@
 #include "../include/ge/Node.h"
 
-#include "../../utils/include/ge/Point.h"
 #include "../include/ge/Scene.h"
 #include "../../utils/include/ge/UUID.h"
 
@@ -9,24 +8,23 @@ using namespace ge;
 Node::Node(const int &width, const int &height):
   width(width),
   height(height),
-  uuid(UUID::make()) {
-  anchorPoint = std::make_shared<Point>(0, 0);
-}
+  uuid(UUID::make()) {}
 
 SDL_Rect Node::getBounds() {
   return {getX(), getY(), getWidth(), getHeight()};
 }
 
-void Node::setAnchorPoint(std::shared_ptr<Point> point) {
-  anchorPoint = point;
+void Node::setAnchorPoint(const double &x, const double &y) {
+  anchorX = x;
+  anchorY = y;
 }
 
 int Node::getX() {
-  return x - (anchorPoint->x * getWidth());
+  return x - (anchorX * getWidth());
 }
 
 int Node::getY() {
-  return y - (anchorPoint->y * getHeight());
+  return y - (anchorY * getHeight());
 }
 
 void Node::setX(const int &x) {

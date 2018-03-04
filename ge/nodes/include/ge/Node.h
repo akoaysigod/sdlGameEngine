@@ -12,7 +12,6 @@
 #include <vector>
 
 namespace ge {
-  class Point;
   class Scene;
   class Node: public std::enable_shared_from_this<Node>,
               public Updateable,
@@ -30,7 +29,7 @@ namespace ge {
     int getHeight();
 
     virtual SDL_Rect getBounds();
-    void setAnchorPoint(std::shared_ptr<Point> point);
+    void setAnchorPoint(const double &x, const double &y);
 
     void setAction(std::shared_ptr<Action> action);
     bool hasAction();
@@ -57,11 +56,13 @@ namespace ge {
     std::weak_ptr<Scene> scene;
     std::weak_ptr<Node> parent;
     std::shared_ptr<Action> action;
-    std::shared_ptr<Point> anchorPoint;
 
   private:
     int x = 0;
     int y = 0;
+
+    double anchorX = 0.0;
+    double anchorY = 0.0;
 
     const int width;
     const int height;
