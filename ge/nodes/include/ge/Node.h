@@ -25,6 +25,8 @@ namespace ge {
     void setY(const int &y);
     void setXY(const int &x, const int &y);
 
+    void setXScale(const double &scale);
+    void setYScale(const double &scale);
     int getWidth();
     int getHeight();
 
@@ -64,6 +66,8 @@ namespace ge {
     double anchorX = 0.0;
     double anchorY = 0.0;
 
+    double xScale = 0.0;
+    double yScale = 0.0;
     const int width;
     const int height;
   };

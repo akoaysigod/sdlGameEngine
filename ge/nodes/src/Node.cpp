@@ -40,12 +40,20 @@ void Node::setXY(const int &x, const int &y) {
   setY(y);
 }
 
+void Node::setXScale(const double &scale) {
+  xScale = scale;
+}
+
+void Node::setYScale(const double &scale) {
+  yScale = scale;
+}
+
 int Node::getWidth() {
-  return width;
+  return (int)(width * xScale);
 }
 
 int Node::getHeight() {
-  return height;
+  return (int)(height * yScale);
 }
 
 //updateable
