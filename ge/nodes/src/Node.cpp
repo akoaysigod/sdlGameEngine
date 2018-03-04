@@ -6,10 +6,18 @@
 
 using namespace ge;
 
-Node::Node(): uuid(UUID::make()), children(std::vector<std::shared_ptr<Node>>()) {}
+Node::Node(const int &width, const int &height):
+  width(width),
+  height(height),
+  uuid(UUID::make()) {}
+
+Node::Node():
+  width(0),
+  height(0),
+  uuid(UUID::make()) {}
 
 SDL_Rect Node::getBounds() {
-  return {getX(), getY(), 0, 0};
+  return {getX(), getY(), getWidth(), getHeight()};
 }
 
 void Node::setAnchorPoint(std::shared_ptr<Point> point) {
@@ -17,11 +25,11 @@ void Node::setAnchorPoint(std::shared_ptr<Point> point) {
 }
 
 int Node::getX() {
-  return x - (anchorPoint->x * getBounds().w);
+  return x - (anchorPoint->x * getWidth());
 }
 
 int Node::getY() {
-  return y - (anchorPoint->y * getBounds().h);
+  return y - (anchorPoint->y * getHeight());
 }
 
 void Node::setX(const int &x) {
@@ -35,6 +43,14 @@ void Node::setY(const int &y) {
 void Node::setXY(const int &x, const int &y) {
   setX(x);
   setY(y);
+}
+
+int Node::getWidth() {
+  return width;
+}
+
+int Node::getHeight() {
+  return height;
 }
 
 //updateable

@@ -4,7 +4,9 @@
 
 using namespace ge;
 
-SpriteNode::SpriteNode(std::shared_ptr<Texture> texture): texture(texture) {}
+SpriteNode::SpriteNode(std::shared_ptr<Texture> texture):
+  Node::Node(texture->width, texture->height),
+  texture(texture) {}
 
 std::shared_ptr<Texture> SpriteNode::getTexture() {
   return texture;
@@ -19,9 +21,9 @@ SDL_Rect SpriteNode::getBounds() {
     auto parentBounds = this->parent.lock()->getBounds();
     int px = parentBounds.x;
     int py = parentBounds.y;
-    return texture->getBounds(getX() + px, getY() + py);
+    return {getX() + px, getY() + py, getWidth(), getHeight()};
   }
-  return texture->getBounds(getX(), getY());
+  return {getX(), getY(), getWidth(), getHeight()};
 }
 
 //renderable

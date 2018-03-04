@@ -9,16 +9,18 @@ RectNode::RectNode(const int &r,
                    const int &b,
                    const int &a,
                    const int &w,
-                   const int &h): r(r), g(g), b(b), a(a), w(w), h(h) {}
+                   const int &h):
+  Node::Node(w, h),
+  r(r), g(g), b(b), a(a) {}
 
 SDL_Rect RectNode::getBounds() {
   if (!parent.expired()) {
     auto parentBounds = this->parent.lock()->getBounds();
     int px = parentBounds.x;
     int py = parentBounds.y;
-    return {getX() + px, getY() + py, w, h};
+    return {getX() + px, getY() + py, getWidth(), getHeight()};
   }
-  return {getX(), getY(), w, h};
+  return {getX(), getY(), getWidth(), getHeight()};
 }
 
 //renderable

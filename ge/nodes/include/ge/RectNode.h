@@ -27,7 +27,5 @@ namespace ge {
     const int g;
     const int b;
     const int a;
-    const int w;
-    const int h;
   };
 }

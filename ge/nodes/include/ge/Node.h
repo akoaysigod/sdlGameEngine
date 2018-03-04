@@ -18,6 +18,7 @@ namespace ge {
               public Updateable,
               public Hashable {
   public:
+    Node(const int &width, const int &height);
     Node();
 
     int getX();
@@ -25,6 +26,9 @@ namespace ge {
     void setX(const int &x);
     void setY(const int &y);
     void setXY(const int &x, const int &y);
+
+    int getWidth();
+    int getHeight();
 
     virtual SDL_Rect getBounds();
     void setAnchorPoint(std::shared_ptr<Point> point);
@@ -49,7 +53,7 @@ namespace ge {
     void removeFromParent();
 
   protected:
-    std::vector<std::shared_ptr<Node>> children;
+    std::vector<std::shared_ptr<Node>> children = {};
     const std::string uuid;
     std::weak_ptr<Scene> scene;
     std::weak_ptr<Node> parent;
@@ -59,5 +63,8 @@ namespace ge {
   private:
     int x = 0;
     int y = 0;
+
+    const int width;
+    const int height;
   };
 }

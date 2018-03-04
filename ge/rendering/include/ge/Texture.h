@@ -29,10 +29,11 @@ namespace ge {
     SDL_Rect getBounds(int x, int y) const;
     SDL_Rect getClipRect() const;
 
+    const int width;
+    const int height;
+
   private:
     std::shared_ptr<SDL_Texture> texture;
     const SDL_Rect clipRect;
-    const int width;
-    const int height;
   };
 }
