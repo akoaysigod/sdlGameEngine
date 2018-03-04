@@ -48,6 +48,14 @@ void Node::setYScale(const double &scale) {
   yScale = scale;
 }
 
+double Node::getXScale() {
+  return xScale;
+}
+
+double Node::getYScale() {
+  return yScale;
+}
+
 int Node::getWidth() {
   return (int)(width * xScale);
 }
@@ -120,4 +128,8 @@ void Node::removeFromParent() {
     return;
   }
   (parent.lock())->remove(shared_from_this());
+}
+
+bool Node::hasParent() {
+  return !parent.expired() && !scene.expired();
 }

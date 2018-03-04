@@ -27,6 +27,8 @@ namespace ge {
 
     void setXScale(const double &scale);
     void setYScale(const double &scale);
+    double getXScale();
+    double getYScale();
     int getWidth();
     int getHeight();
 
@@ -52,6 +54,8 @@ namespace ge {
 
     void removeFromParent();
 
+    bool hasParent();
+
   protected:
     std::vector<std::shared_ptr<Node>> children = {};
     const std::string uuid;
@@ -66,8 +70,8 @@ namespace ge {
     double anchorX = 0.0;
     double anchorY = 0.0;
 
-    double xScale = 0.0;
-    double yScale = 0.0;
+    double xScale = 1.0;
+    double yScale = 1.0;
     const int width;
     const int height;
   };
