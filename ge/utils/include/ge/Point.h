@@ -6,8 +6,6 @@ namespace ge {
     Point(int x, int y);
     double distance(Point from);
     double duration(Point to);
-
-  private:
     const int x;
     const int y;
   };

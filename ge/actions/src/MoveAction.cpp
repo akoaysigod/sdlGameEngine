@@ -28,14 +28,14 @@ std::shared_ptr<MoveAction> MoveAction::makeMoveAction(const int &startX,
 
 void MoveAction::run(std::shared_ptr<Node> node, double delta) {
   if (isMoveTo) {
-    x = x - node->x;
-    y = y - node->y;
+    x = x - node->getX();
+    y = y - node->getY();
     isMoveTo = false;
   }
 
   if (timer == 0.0) {
-    sPosX = node->x;
-    sPosY = node->y;
+    sPosX = node->getX();
+    sPosY = node->getY();
   }
 
   moveBy(node, x, y);
@@ -46,6 +46,6 @@ void MoveAction::run(std::shared_ptr<Node> node, double delta) {
 void MoveAction::moveBy(std::shared_ptr<Node> node, int x, int y) {
   auto time = pointAtTime();
 
-  node->x = sPosX + (x * time);
-  node->y = sPosY + (y * time);
+  node->setX(sPosX + (x * time));
+  node->setY(sPosY + (y * time));
 }

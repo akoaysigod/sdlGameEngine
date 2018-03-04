@@ -19,9 +19,9 @@ SDL_Rect SpriteNode::getBounds() {
     auto parentBounds = this->parent.lock()->getBounds();
     int px = parentBounds.x;
     int py = parentBounds.y;
-    return texture->getBounds(x + px, y + py);
+    return texture->getBounds(getX() + px, getY() + py);
   }
-  return texture->getBounds(x, y);
+  return texture->getBounds(getX(), getY());
 }
 
 //renderable

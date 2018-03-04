@@ -1,5 +1,6 @@
 #include "../include/ge/Node.h"
 
+#include "../../utils/include/ge/Point.h"
 #include "../include/ge/Scene.h"
 #include "../../utils/include/ge/UUID.h"
 
@@ -7,17 +8,33 @@ using namespace ge;
 
 Node::Node(): uuid(UUID::make()), children(std::vector<std::shared_ptr<Node>>()) {}
 
-Position Node::getPosition() {
-  return {x, y};
-}
-
-void Node::setPosition(Position position) {
-  x = position.x;
-  y = position.y;
-}
-
 SDL_Rect Node::getBounds() {
-  return {x, y, 0, 0};
+  return {getX(), getY(), 0, 0};
+}
+
+void Node::setAnchorPoint(std::shared_ptr<Point> point) {
+  anchorPoint = point;
+}
+
+int Node::getX() {
+  return x - (anchorPoint->x * getBounds().w);
+}
+
+int Node::getY() {
+  return y - (anchorPoint->y * getBounds().h);
+}
+
+void Node::setX(const int &x) {
+  this->x = x;
+}
+
+void Node::setY(const int &y) {
+  this->y = y;
+}
+
+void Node::setXY(const int &x, const int &y) {
+  setX(x);
+  setY(y);
 }
 
 //updateable

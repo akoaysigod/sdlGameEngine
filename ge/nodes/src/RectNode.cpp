@@ -16,9 +16,9 @@ SDL_Rect RectNode::getBounds() {
     auto parentBounds = this->parent.lock()->getBounds();
     int px = parentBounds.x;
     int py = parentBounds.y;
-    return {x + px, y + py, w, h};
+    return {getX() + px, getY() + py, w, h};
   }
-  return {x, y, w, h};
+  return {getX(), getY(), w, h};
 }
 
 //renderable
