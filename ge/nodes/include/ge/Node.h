@@ -19,7 +19,6 @@ namespace ge {
               public Hashable {
   public:
     Node(const int &width, const int &height);
-    Node();
 
     int getX();
     int getY();

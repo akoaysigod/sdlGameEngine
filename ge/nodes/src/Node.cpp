@@ -9,12 +9,9 @@ using namespace ge;
 Node::Node(const int &width, const int &height):
   width(width),
   height(height),
-  uuid(UUID::make()) {}
-
-Node::Node():
-  width(0),
-  height(0),
-  uuid(UUID::make()) {}
+  uuid(UUID::make()) {
+  anchorPoint = std::make_shared<Point>(0, 0);
+}
 
 SDL_Rect Node::getBounds() {
   return {getX(), getY(), getWidth(), getHeight()};
