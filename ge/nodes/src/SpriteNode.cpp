@@ -1,6 +1,7 @@
 #include "../include/ge/SpriteNode.h"
 
 #include "../../rendering/include/ge/Renderer.h"
+#include "../../rendering/include/ge/Texture.h"
 
 using namespace ge;
 
@@ -14,16 +15,6 @@ std::shared_ptr<Texture> SpriteNode::getTexture() {
 
 void SpriteNode::setTexture(std::shared_ptr<Texture> texture) {
   this->texture = texture;
-}
-
-SDL_Rect SpriteNode::getBounds() {
-  if (!parent.expired()) {
-    auto parentBounds = this->parent.lock()->getBounds();
-    int px = parentBounds.x;
-    int py = parentBounds.y;
-    return {getX() + px, getY() + py, getWidth(), getHeight()};
-  }
-  return {getX(), getY(), getWidth(), getHeight()};
 }
 
 //renderable

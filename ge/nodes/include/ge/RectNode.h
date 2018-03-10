@@ -17,8 +17,6 @@ namespace ge {
              const int &w,
              const int &h);
 
-    SDL_Rect getBounds();
-
     //renderable
     void render(const std::shared_ptr<Renderer> &renderer);
 

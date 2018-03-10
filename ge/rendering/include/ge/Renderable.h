@@ -13,7 +13,6 @@ namespace ge {
   class Renderable {
   public:
     virtual void render(const std::shared_ptr<Renderer> &renderer) = 0;
-    virtual SDL_Rect getBounds() = 0;
     int zPosition = 0;
   };
 }

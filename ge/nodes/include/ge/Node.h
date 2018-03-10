@@ -31,8 +31,8 @@ namespace ge {
     double getYScale();
     int getWidth();
     int getHeight();
+    SDL_Rect getBounds();
 
-    virtual SDL_Rect getBounds();
     void setAnchorPoint(const double &x, const double &y);
 
     void setAction(std::shared_ptr<Action> action);
@@ -54,13 +54,10 @@ namespace ge {
 
     void removeFromParent();
 
-    bool hasParent();
-
   protected:
     std::vector<std::shared_ptr<Node>> children = {};
     const std::string uuid;
     std::weak_ptr<Scene> scene;
-    std::weak_ptr<Node> parent;
     std::shared_ptr<Action> action;
 
   private:
@@ -74,5 +71,7 @@ namespace ge {
     double yScale = 1.0;
     const int width;
     const int height;
+
+    std::weak_ptr<Node> parent;
   };
 }

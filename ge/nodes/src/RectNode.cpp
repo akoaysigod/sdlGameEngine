@@ -13,16 +13,6 @@ RectNode::RectNode(const int &r,
   Node::Node(w, h),
   r(r), g(g), b(b), a(a) {}
 
-SDL_Rect RectNode::getBounds() {
-  if (!parent.expired()) {
-    auto parentBounds = this->parent.lock()->getBounds();
-    int px = parentBounds.x;
-    int py = parentBounds.y;
-    return {getX() + px, getY() + py, getWidth(), getHeight()};
-  }
-  return {getX(), getY(), getWidth(), getHeight()};
-}
-
 //renderable
 void RectNode::render(const std::shared_ptr<Renderer> &renderer) {
   renderer->renderRect(getBounds(), r, g, b, a);

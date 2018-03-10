@@ -9,11 +9,11 @@
 #include <memory>
 
 namespace ge {
+  class Texture;
+
   class SpriteNode: public Node, public Renderable {
   public:
     SpriteNode(std::shared_ptr<Texture> texture);
-
-    SDL_Rect getBounds();
 
     //renderable
     void render(const std::shared_ptr<Renderer> &renderer);

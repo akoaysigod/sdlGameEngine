@@ -11,7 +11,13 @@ Node::Node(const int &width, const int &height):
   uuid(UUID::make()) {}
 
 SDL_Rect Node::getBounds() {
-  return {getX(), getY(), getWidth(), getHeight()};
+  SDL_Rect bounds = {getX(), getY(), getWidth(), getHeight()};
+  if (auto parent = getParent()) {
+    auto pBounds = parent->getBounds();
+    bounds.x += pBounds.x;
+    bounds.y += pBounds.y;
+  }
+  return bounds;
 }
 
 void Node::setAnchorPoint(const double &x, const double &y) {
@@ -101,7 +107,8 @@ std::string Node::getUUID() const {
 
 void Node::add(std::shared_ptr<Node> node) {
   children.push_back(node);
-  node->parent = shared_from_this();
+  node->parent = weak_from_this();
+  //node->parent = shared_from_this();
 }
 
 std::shared_ptr<Node> Node::remove(std::shared_ptr<Node> node) {
@@ -130,11 +137,4 @@ void Node::removeFromParent() {
     return;
   }
   (parent.lock())->remove(shared_from_this());
-}
-
-bool Node::hasParent() {
-  if (!parent.expired() || !scene.expired()) {
-    return true;
-  }
-  return false;
 }
