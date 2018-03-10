@@ -108,7 +108,7 @@ std::string Node::getUUID() const {
 void Node::add(std::shared_ptr<Node> node) {
   children.push_back(node);
   node->parent = weak_from_this();
-  //node->parent = shared_from_this();
+  node->visible = true;
 }
 
 std::shared_ptr<Node> Node::remove(std::shared_ptr<Node> node) {
@@ -116,12 +116,14 @@ std::shared_ptr<Node> Node::remove(std::shared_ptr<Node> node) {
   if (nodeIt != children.end()) {
     children.erase(nodeIt);
     (*nodeIt)->parent.reset();
+    (*nodeIt)->visible = false;
     return *nodeIt;
   }
   return nullptr;
 }
 
 void Node::setScene(std::shared_ptr<Scene> scene) {
+  visible = true;
   this->scene = scene;
 }
 
@@ -137,4 +139,8 @@ void Node::removeFromParent() {
     return;
   }
   (parent.lock())->remove(shared_from_this());
+}
+
+bool Node::isVisible() {
+  return visible;
 }

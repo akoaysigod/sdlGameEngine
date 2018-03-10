@@ -54,6 +54,8 @@ namespace ge {
 
     void removeFromParent();
 
+    bool isVisible();
+
   protected:
     std::vector<std::shared_ptr<Node>> children = {};
     const std::string uuid;
@@ -73,5 +75,6 @@ namespace ge {
     const int height;
 
     std::weak_ptr<Node> parent;
+    bool visible = false;
   };
 }

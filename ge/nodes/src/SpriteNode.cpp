@@ -26,6 +26,8 @@ void SpriteNode::render(const std::shared_ptr<Renderer> &renderer) {
   // and call super here and in RectNode
   // can probably refactor getBounds some how too
   for (auto child: children) {
+    if (!child->isVisible()) { continue; }
+
     auto renderable = std::dynamic_pointer_cast<Renderable>(child);
     if (renderable) {
       renderable->render(renderer);
