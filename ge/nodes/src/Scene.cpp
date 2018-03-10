@@ -1,5 +1,6 @@
 #include "../include/ge/Scene.h"
 
+#include "../include/ge/CameraNode.h"
 #include "../include/ge/Node.h"
 #include "../../rendering/include/ge/Renderer.h"
 #include "../include/ge/SpriteNode.h"

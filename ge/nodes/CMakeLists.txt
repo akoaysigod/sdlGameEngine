@@ -1,4 +1,5 @@
 add_library(nodes
+  src/CameraNode.cpp
   src/Node.cpp
   src/RectNode.cpp
   src/Scene.cpp

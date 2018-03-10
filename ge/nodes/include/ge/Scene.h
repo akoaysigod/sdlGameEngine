@@ -8,6 +8,7 @@
 #include <vector>
 
 namespace ge {
+  class CameraNode;
   class Node;
   class Renderer;
   class SpriteNode;
@@ -23,6 +24,8 @@ namespace ge {
     void render(const std::shared_ptr<Renderer> &renderer);
 
     std::vector<std::shared_ptr<Node>> getChildren();
+
+    std::shared_ptr<CameraNode> cameraNode;
 
   protected:
     std::vector<std::shared_ptr<Node>> children = {};
