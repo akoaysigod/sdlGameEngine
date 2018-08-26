@@ -15,6 +15,8 @@ namespace ge {
 
   class Scene: public std::enable_shared_from_this<Scene>, public Updateable {
   public:
+    Scene(const int &width, const int &height);
+
     //updateable
     virtual void update(double delta);
 

@@ -12,6 +12,7 @@
 #include <vector>
 
 namespace ge {
+  class CameraNode;
   class Scene;
   class Node: public std::enable_shared_from_this<Node>,
               public Updateable,
@@ -45,7 +46,7 @@ namespace ge {
     std::string getUUID() const;
     bool operator==(const Hashable &rhs) const;
 
-    void add(std::shared_ptr<Node> node);
+    virtual void add(std::shared_ptr<Node> node);
     std::shared_ptr<Node> remove(std::shared_ptr<Node> node);
 
     virtual void setScene(std::shared_ptr<Scene> scene);
@@ -55,6 +56,9 @@ namespace ge {
     void removeFromParent();
 
     bool isVisible();
+
+    void setCameraNode(std::shared_ptr<CameraNode> cameraNode);
+    std::shared_ptr<CameraNode> getCameraNode() const;
 
   protected:
     std::vector<std::shared_ptr<Node>> children = {};
@@ -75,6 +79,8 @@ namespace ge {
     const int height;
 
     std::weak_ptr<Node> parent;
+    std::weak_ptr<CameraNode> cameraNode;
+    // why did I add this? probably should be public and control rendering
     bool visible = false;
   };
 }

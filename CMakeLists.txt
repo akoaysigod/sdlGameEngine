@@ -52,7 +52,8 @@ add_subdirectory(ge/)
 
 #set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
-add_library(${PROJECT_NAME} Init.cpp)
+#add_library(${PROJECT_NAME} Init.cpp)
+add_library(${PROJECT_NAME})
 
 target_include_directories(${PROJECT_NAME}
   PUBLIC ${SDL_INCLUDE_DIR}
@@ -111,6 +112,7 @@ target_link_libraries(
   PRIVATE ${SDL_TTF_LIBRARY}
   PRIVATE ${SDL_MIXER_LIBRARY}
   PUBLIC actions
+  PUBLIC init
   PUBLIC nodes
   PUBLIC rendering
   PUBLIC sound

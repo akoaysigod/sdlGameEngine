@@ -1,4 +1,4 @@
-#include "Init.h"
+#include "../include/ge/Init.h"
 
 #include <SDL.h>
 #include <SDL_mixer.h>

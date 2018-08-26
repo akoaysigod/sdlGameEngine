@@ -9,6 +9,12 @@
 
 using namespace ge;
 
+Scene::Scene(const int &width, const int &height):
+  cameraNode(std::make_shared<CameraNode>(width, height)) {
+  // this is probably fine?
+  addRenderable(cameraNode);
+}
+
 //updateable
 void Scene::update(double delta) {
   for (auto updateable: children) {
@@ -26,6 +32,7 @@ void Scene::add(std::shared_ptr<Node> node) {
   }
   children.push_back(node);
   node->setScene(shared_from_this());
+  node->setCameraNode(cameraNode);
 }
 
 void Scene::addRenderable(std::shared_ptr<Renderable> renderable) {

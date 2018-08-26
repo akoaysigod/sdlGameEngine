@@ -1,5 +1,6 @@
 #include "../include/ge/Node.h"
 
+#include "../include/ge/CameraNode.h"
 #include "../include/ge/Scene.h"
 #include "../../utils/include/ge/UUID.h"
 
@@ -16,6 +17,10 @@ SDL_Rect Node::getBounds() {
     auto pBounds = parent->getBounds();
     bounds.x += pBounds.x;
     bounds.y += pBounds.y;
+  }
+  else if (auto camera = getCameraNode()) {
+    bounds.x -= camera->x;
+    bounds.y -= camera->y;
   }
   return bounds;
 }
@@ -109,14 +114,18 @@ void Node::add(std::shared_ptr<Node> node) {
   children.push_back(node);
   node->parent = weak_from_this();
   node->visible = true;
+  node->cameraNode = cameraNode;
 }
 
 std::shared_ptr<Node> Node::remove(std::shared_ptr<Node> node) {
   auto nodeIt = std::find(children.begin(), children.end(), node);
   if (nodeIt != children.end()) {
     children.erase(nodeIt);
+    // i forget if it's safe to call reset on possible empty weak_ptr
+    // todo: look that up, this will be empty when it's a CameraNode, seems fine though
     (*nodeIt)->parent.reset();
     (*nodeIt)->visible = false;
+    (*nodeIt)->cameraNode.reset();
     return *nodeIt;
   }
   return nullptr;
@@ -132,6 +141,17 @@ std::shared_ptr<Node> Node::getParent() const {
     return parent.lock();
   }
   return nullptr;
+}
+
+std::shared_ptr<CameraNode> Node::getCameraNode() const {
+  if (!cameraNode.expired()) {
+    return cameraNode.lock();
+  }
+  return nullptr;
+}
+
+void Node::setCameraNode(std::shared_ptr<CameraNode> cameraNode) {
+  this->cameraNode = cameraNode;
 }
 
 void Node::removeFromParent() {

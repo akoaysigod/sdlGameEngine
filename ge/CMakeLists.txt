@@ -1,4 +1,5 @@
 add_subdirectory(actions)
+add_subdirectory(init)
 add_subdirectory(nodes)
 add_subdirectory(rendering)
 add_subdirectory(sound)
