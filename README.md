@@ -15,7 +15,9 @@ with Apple's clang 9+ or whatever the current compiler that ships with XCode is.
 
 # build
 ```sh
-cmake .
+mkdir build
+cd build
+cmake ..
 # if you need to install clang manually I used the following flags for Linux,
 # -DCMAKE_CXX_FLAGS=-I/pathTo/clang/include/c++/v1
 # -DCMAKE_EXE_LINKER_FLAGS='-L/pathTo/clang/lib -lc++ -lc++experimental'
