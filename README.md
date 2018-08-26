@@ -37,6 +37,7 @@ I don't generally develop on Windows machines.
 #include <ge/Renderer.h>
 #include <ge/Scene.h>
 #include <ge/SpriteNode.h>
+#include <ge/Texture.h>
 
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
@@ -47,9 +48,7 @@ void run() {
   // RGB color, will render a black window
   auto renderer = std::make_shared<ge::Renderer>(window, 0, 0, 0);
   auto scene = std::make_shared<ge::Scene>(SCREEN_WIDTH, SCREEN_HEIGHT);
-  //second argument is semi-optional
-  auto textureLoader = std::make_shared<ge::TextureLoader>(renderer, pathToTextures);
-  auto texture = textureLoader->getTextureFrom('./someFolder/texture.png');
+  auto texture = ge::Texture::init(renderer, "./pathToTextures");
   auto sprite = std::make_shared<ge::SpriteNode>(texture);
   scene->add(sprite);
 
@@ -105,9 +104,9 @@ int main() {
 So much boilerplate :(. I will abstract some of this stuff someday.
 
 # Todo
-Wrap SDL IO.
-Unhardcode SDL for Windows.
-Figure out how to compile with CMake on Windows without opening VS.
+Wrap SDL IO.  
+Unhardcode SDL for Windows.  
+Figure out how to compile with CMake on Windows without opening VS.  
 
 # Useful snippets
 Not directly related to the use of this engine but things I had to do while using it in
