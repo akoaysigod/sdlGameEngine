@@ -20,6 +20,17 @@ set(WINDOWS_SDL_IMAGE_INCLUDE_DIR "G:/SDL2_image-2.0.2/include")
 set(WINDOWS_SDL_TTF_INCLUDE_DIR "G:/SDL2_ttf-2.0.14/include")
 set(WINDOWS_SDL_MIXER_INCLUDE_DIR "G:/SDL2_mixer-2.0.2/include")
 
+option(JAVASCRIPT "JAVASCRIPT" OFF)
+if (JAVASCRIPT)
+  set(LOCAL_V8_INCLUDE_DIR ../v8/include)
+  find_path(
+    V8_INCLUDE_DIR
+    NAMES v8.h libplatform.h
+    PATHS ${LOCAL_V8_INCLUDE_DIR}
+    PATH_SUFFIXES libplatform
+  )
+endif()
+
 find_path(
   SDL_INCLUDE_DIR
   NAMES SDL.h
@@ -61,6 +72,10 @@ target_include_directories(${PROJECT_NAME}
   #need to hide this somehow at some point
   #more abstraction yo
   PUBLIC ${SDL_MIXER_INCLUDE_DIR}
+  if (JAVASCRIPT)
+    # make private?
+    PUBLIC ${V8_INCLUDE_DIR}
+  endif()
 )
 
 if (APPLE)
@@ -104,6 +119,21 @@ find_library(
   PATHS ${MAC_LIB_DIR} ${LINUX_LIB_DIR} ${WINDOWS_SDL_MIXER_LIB_DIR}
 )
 
+if (JAVASCRIPT)
+  set(V8_LIB_DIR ../v8/out.gn/x64.release.sample/obj)
+  find_library(
+    V8_LIBRARY
+    NAMES v8_monolith
+    PATHS ${V8_LIB_DIR}
+  )
+  find_package(Threads)
+  target_link_libraries(
+    ${PROJECT_NAME}
+    PRIVATE ${V8_LIBRARY}
+    PRIVATE ${CMAKE_THREAD_LIBS_INIT}
+  )
+endif()
+
 # figure out how CMake dependencies work
 # the order of this right now is specific or it'll fail, example nodes depends on actions
 # maybe there are other ones that I don't know about because I just got lucky and this works :)
@@ -120,3 +150,7 @@ target_link_libraries(
   PUBLIC sound
   PUBLIC utils
 )
+
+# temp for testing
+add_executable(js main.cpp)
+target_link_libraries(js ${PROJECT_NAME})

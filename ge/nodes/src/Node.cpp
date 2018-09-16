@@ -4,6 +4,8 @@
 #include "../include/ge/Scene.h"
 #include "../../utils/include/ge/UUID.h"
 
+#include <algorithm>
+
 using namespace ge;
 
 Node::Node(const int &width, const int &height):
