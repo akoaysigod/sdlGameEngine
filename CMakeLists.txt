@@ -52,7 +52,6 @@ add_subdirectory(ge/)
 
 #set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
-#add_library(${PROJECT_NAME} Init.cpp)
 add_library(${PROJECT_NAME})
 
 target_include_directories(${PROJECT_NAME}
@@ -105,15 +104,18 @@ find_library(
   PATHS ${MAC_LIB_DIR} ${LINUX_LIB_DIR} ${WINDOWS_SDL_MIXER_LIB_DIR}
 )
 
+# figure out how CMake dependencies work
+# the order of this right now is specific or it'll fail, example nodes depends on actions
+# maybe there are other ones that I don't know about because I just got lucky and this works :)
 target_link_libraries(
   ${PROJECT_NAME}
   PUBLIC ${SDL_LIBRARY}
   PRIVATE ${SDL_IMAGE_LIBRARY}
   PRIVATE ${SDL_TTF_LIBRARY}
   PRIVATE ${SDL_MIXER_LIBRARY}
-  PUBLIC actions
   PUBLIC init
   PUBLIC nodes
+  PUBLIC actions
   PUBLIC rendering
   PUBLIC sound
   PUBLIC utils
