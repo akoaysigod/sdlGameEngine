@@ -52,7 +52,7 @@ add_subdirectory(ge/)
 
 #set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
-add_library(${PROJECT_NAME})
+add_library(${PROJECT_NAME} nothing.cpp)
 
 target_include_directories(${PROJECT_NAME}
   PUBLIC ${SDL_INCLUDE_DIR}
