@@ -1,5 +1,5 @@
 # to compile this shit on linux with a custom clang install
-# alias cmakeBuild="cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON .. -DCMAKE_CXX_FLAGS=-I/home/tony/.bin/clang/include/c++/v1 -DCMAKE_EXE_LINKER_FLAGS='-L/home/tony/.bin/clang/lib -lc++'"
+# alias cmakeBuild="cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON .. -DCMAKE_BUILD_TYPE=DEBUG -DJAVASCRIPT=ON"
 
 cmake_minimum_required(VERSION 3.9.0)
 
