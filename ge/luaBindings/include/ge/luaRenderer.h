@@ -54,7 +54,7 @@ static int rendererPresent(lua_State *state) {
   void *maybeRenderer = luaL_checkudata(state, 1, kLUARendererName);
 
   auto renderer = static_cast<std::shared_ptr<Renderer> *>(maybeRenderer);
-  (*renderer)->clear();
+  (*renderer)->present();
 
   return 0;
 }
