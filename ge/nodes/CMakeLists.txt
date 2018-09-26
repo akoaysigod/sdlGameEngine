@@ -6,10 +6,10 @@ add_library(nodes
   src/SpriteNode.cpp
 )
 
-add_dependencies(nodes actions)
-
 target_include_directories(nodes
   PUBLIC include/
   PUBLIC ${SDL_INCLUDE_DIR}
   PRIVATE ${SDL_IMAGE_INCLUDE_DIR}
 )
+
+target_link_libraries(nodes actions)

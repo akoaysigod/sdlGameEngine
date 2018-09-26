@@ -1,8 +1,12 @@
 #include "../include/ge/Node.h"
 
+#include "../../actions/include/ge/Action.h"
 #include "../include/ge/CameraNode.h"
 #include "../include/ge/Scene.h"
+#include "../../utils/include/ge/Rect.h"
 #include "../../utils/include/ge/UUID.h"
+
+#include <SDL.h>
 
 using namespace ge;
 
@@ -11,8 +15,8 @@ Node::Node(const int &width, const int &height):
   height(height),
   uuid(UUID::make()) {}
 
-SDL_Rect Node::getBounds() {
-  SDL_Rect bounds = {getX(), getY(), getWidth(), getHeight()};
+Rect Node::getBounds() {
+  Rect bounds = Rect(getX(), getY(), getWidth(), getHeight());
   if (auto parent = getParent()) {
     auto pBounds = parent->getBounds();
     bounds.x += pBounds.x;

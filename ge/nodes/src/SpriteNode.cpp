@@ -1,7 +1,10 @@
 #include "../include/ge/SpriteNode.h"
 
+#include "../../utils/include/ge/Rect.h"
 #include "../../rendering/include/ge/Renderer.h"
 #include "../../rendering/include/ge/Texture.h"
+
+#include <SDL.h>
 
 using namespace ge;
 
@@ -19,7 +22,7 @@ void SpriteNode::setTexture(std::shared_ptr<Texture> texture) {
 
 //renderable
 void SpriteNode::render(const std::shared_ptr<Renderer> &renderer) {
-  renderer->renderCopy(texture->getCPtr(), texture->getClipRect(), getBounds());
+  renderer->renderCopy(texture->getCPtr(), texture->getClipRect(), getBounds().sdlRect());
 
   // this is repeated in RectNode
   // could make a private RenderableNode they both inherit from

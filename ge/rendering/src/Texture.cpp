@@ -5,18 +5,20 @@
 #include <SDL_ttf.h>
 
 #include "../include/ge/Font.h"
+#include "../../utils/include/ge/Rect.h"
 #include "../include/ge/Renderer.h"
 
 using namespace ge;
 
 Texture::Texture(std::shared_ptr<SDL_Texture> texture,
-                 const SDL_Rect &clipRect,
-                 const int width,
-                 const int height):
-  texture(texture), clipRect(clipRect), width(width), height(height) {}
+                 const int &x,
+                 const int &y,
+                 const int &width,
+                 const int &height):
+  texture(texture), x(x), y(y), width(width), height(height) {}
 
-std::shared_ptr<Texture> Texture::init(const std::string &fileName,
-                                       const std::shared_ptr<Renderer> &renderer) {
+std::shared_ptr<Texture> Texture::init(const std::shared_ptr<Renderer> &renderer,
+                                       const std::string &fileName) {
   auto surface = std::shared_ptr<SDL_Surface>
     (IMG_Load(fileName.c_str()),
      SDL_FreeSurface);
@@ -25,8 +27,7 @@ std::shared_ptr<Texture> Texture::init(const std::string &fileName,
   auto texture = std::shared_ptr<SDL_Texture>
     (SDL_CreateTextureFromSurface(renderer->getCPtr(), surface.get()),
      SDL_DestroyTexture);
-  SDL_Rect clipRect = {0, 0, width, height};
-  return std::make_shared<Texture>(texture, clipRect, width, height);
+  return std::make_shared<Texture>(texture, 0, 0, width, height);
 }
 
 std::shared_ptr<Texture> Texture::initFont(const std::shared_ptr<Font> font,
@@ -44,12 +45,11 @@ std::shared_ptr<Texture> Texture::initFont(const std::shared_ptr<Font> font,
   auto texture = std::shared_ptr<SDL_Texture>
     (SDL_CreateTextureFromSurface(renderer->getCPtr(), surface.get()),
      SDL_DestroyTexture);
-  SDL_Rect clipRect = {0, 0, width, height};
-  return std::make_shared<Texture>(texture, clipRect, width, height);
+  return std::make_shared<Texture>(texture, 0, 0, width, height);
 }
 
-Texture Texture::make(const SDL_Rect &clipRect) {
-  return Texture(texture, clipRect, clipRect.w, clipRect.h);
+Texture Texture::make(const Rect &clipRect) {
+  return Texture(texture, clipRect.x, clipRect.y, clipRect.width, clipRect.height);
 }
 
 SDL_Texture* Texture::getCPtr() const {
@@ -61,5 +61,5 @@ SDL_Rect Texture::getBounds(int x, int y) const {
 }
 
 SDL_Rect Texture::getClipRect() const {
-  return clipRect;
+  return {x, y, width, height};
 }

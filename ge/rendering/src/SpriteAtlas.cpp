@@ -1,6 +1,7 @@
-# include "../include/ge/SpriteAtlas.h"
+#include "../include/ge/SpriteAtlas.h"
 
 //#include "../include/ge/SpriteAtlasEntry.h"
+#include "../../utils/include/ge/Rect.h"
 #include "../include/ge/Renderer.h"
 #include "../include/ge/Texture.h"
 //#include "../../utils/include/ge/StringHelper.h"
@@ -70,7 +71,7 @@ std::shared_ptr<Texture> SpriteAtlas::getTexture(const std::string &name) {
   }
 
   auto entry = data.entries[name];
-  SDL_Rect rect = {entry.x, entry.y, entry.width, entry.height};
+  Rect rect = Rect(entry.x, entry.y, entry.width, entry.height);
   auto newTexture = std::make_shared<Texture>(texture->make(rect));
   textures[name] = newTexture;
   return std::shared_ptr<Texture>(newTexture);

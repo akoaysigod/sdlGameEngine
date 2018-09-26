@@ -1,6 +1,9 @@
 #include "../include/ge/RectNode.h"
 
+#include "../../utils/include/ge/Rect.h"
 #include "../../rendering/include/ge/Renderer.h"
+
+#include <SDL.h>
 
 using namespace ge;
 
@@ -15,7 +18,7 @@ RectNode::RectNode(const int &r,
 
 //renderable
 void RectNode::render(const std::shared_ptr<Renderer> &renderer) {
-  renderer->renderRect(getBounds(), r, g, b, a);
+  renderer->renderRect(getBounds().sdlRect(), r, g, b, a);
 
   for (auto child: children) {
     if (!child->isVisible()) { continue; }

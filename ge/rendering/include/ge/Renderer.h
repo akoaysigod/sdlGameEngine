@@ -1,7 +1,10 @@
 #pragma once
 
-#include <SDL.h>
 #include <memory>
+
+class SDL_Renderer;
+struct SDL_Rect;
+class SDL_Texture;
 
 namespace ge {
 class Window;

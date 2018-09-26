@@ -2,6 +2,8 @@
 
 #include "../include/ge/Window.h"
 
+#include <SDL.h>
+
 using ge::Renderer;
 
 Renderer::Renderer(const ge::Window &window, int red, int green, int blue):

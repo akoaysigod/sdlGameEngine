@@ -7,9 +7,4 @@ SpriteAtlasEntry::SpriteAtlasEntry(std::string name, int x, int y, int width, in
   this->y = y;
   this->width = width;
   this->height = height;
-  rect = {x, y, width, height};
-}
-
-SDL_Rect SpriteAtlasEntry::getRect() {
-  return rect;
 }

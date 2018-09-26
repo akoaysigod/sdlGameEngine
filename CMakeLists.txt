@@ -139,9 +139,6 @@ if (LUA)
   )
 endif()
 
-# figure out how CMake dependencies work
-# the order of this right now is specific or it'll fail, example nodes depends on actions
-# maybe there are other ones that I don't know about because I just got lucky and this works :)
 target_link_libraries(
   ${PROJECT_NAME}
   PUBLIC ${SDL_LIBRARY}

@@ -1,7 +1,5 @@
 #pragma once
 
-#include <SDL.h>
-
 #include "Node.h"
 #include "../../rendering/include/ge/Renderable.h"
 #include "../../rendering/include/ge/Texture.h"

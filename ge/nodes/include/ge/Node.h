@@ -1,8 +1,5 @@
 #pragma once
 
-#include <SDL.h>
-
-#include "../../../actions/include/ge/Action.h"
 #include "../../../utils/include/ge/Position.h"
 #include "Hashable.h"
 #include "Updateable.h"
@@ -12,7 +9,9 @@
 #include <vector>
 
 namespace ge {
+  class Action;
   class CameraNode;
+  class Rect;
   class Scene;
   class Node: public std::enable_shared_from_this<Node>,
               public Updateable,
@@ -32,7 +31,7 @@ namespace ge {
     double getYScale();
     int getWidth();
     int getHeight();
-    SDL_Rect getBounds();
+    Rect getBounds();
 
     void setAnchorPoint(const double &x, const double &y);
 
