@@ -10,7 +10,7 @@
 
 using namespace ge;
 
-View::View(const Window &window,
+View::View(std::shared_ptr<Window> window,
            const int &red,
            const int &green,
            const int &blue):

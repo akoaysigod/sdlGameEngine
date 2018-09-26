@@ -9,12 +9,13 @@ class EventHolder;
 // TODO: need to come back to this soon
 namespace ge {
   class Keyboard {
+  public:
     Keyboard();
 
     KeysPressed polled();
     KeysPressed state();
 
   private:
-    std::unique_ptr<EventHolder> eventHolder;
+    std::shared_ptr<EventHolder> eventHolder;
   };
 }

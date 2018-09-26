@@ -1,3 +1,5 @@
+#pragma once
+
 #include <lua.hpp>
 
 #include "../../../rendering/include/ge/Window.h"

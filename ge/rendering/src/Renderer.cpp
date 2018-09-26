@@ -6,9 +6,9 @@
 
 using ge::Renderer;
 
-Renderer::Renderer(const ge::Window &window, int red, int green, int blue):
+Renderer::Renderer(std::shared_ptr<ge::Window> window, int red, int green, int blue):
   r(red), g(green), b(blue),
-  sdlRenderer(SDL_CreateRenderer(window.getCPtr(), -1,
+  sdlRenderer(SDL_CreateRenderer(window->getCPtr(), -1,
                                  SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC),
               SDL_DestroyRenderer) {}
 

@@ -11,7 +11,7 @@ class Window;
 
 class Renderer {
 public:
-  Renderer(const Window &window, int red, int green, int blue);
+  Renderer(std::shared_ptr<Window> window, int red, int green, int blue);
   SDL_Renderer* getCPtr() const;
   void clear();
   void renderCopy(SDL_Texture *texture,

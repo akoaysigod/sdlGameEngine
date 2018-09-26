@@ -1,5 +1,11 @@
 #include "../include/ge/InitLua.h"
 
+#include "../include/ge/luaGameTimer.h"
+#include "../include/ge/luaKeyboard.h"
+#include "../include/ge/luaRenderer.h"
+#include "../include/ge/luaScene.h"
+#include "../include/ge/luaSpriteNode.h"
+#include "../include/ge/luaTexture.h"
 #include "../include/ge/luaWindow.h"
 
 #include <iostream>
@@ -35,5 +41,11 @@ bool InitLua::runScript(const char *name) {
 }
 
 void InitLua::registerObjects() {
+  registerObject(kLUAGameTimerName, initGameTimer, makeGameTimerFuncs().get());
+  registerObject(kLUAKeyboardName, initKeyboard, makeKeyboardFuncs().get());
+  registerObject(kLUARendererName, initRenderer, makeRendererFuncs().get());
+  registerObject(kLUASceneName, initScene, makeSceneFuncs().get());
+  registerObject(kLUASpriteNodeName, initSpriteNode, makeSpriteNodeFuncs().get());
+  registerObject(kLUATextureName, initTexture, makeTextureFuncs().get());
   registerObject(kLUAWindowName, initWindow, makeWindowFuncs().get());
 }

@@ -1,6 +1,7 @@
 #include <SDL.h>
 #include "ge/utils/include/ge/GameTimer.h"
 #include "ge/init/include/ge/Init.h"
+#include "ge/controls/include/ge/Keyboard.h"
 #include "ge/nodes/include/ge/Scene.h"
 #include "ge/nodes/include/ge/SpriteNode.h"
 #include "ge/rendering/include/ge/Renderer.h"
@@ -14,7 +15,7 @@
 #include <memory>
 
 void test() {
-  auto window = ge::Window("test", 0, 0, 800, 640);
+  auto window = std::make_shared<ge::Window>("test", 0, 0, 800, 640);
   //auto view = ge::View(window, 0, 0 ,0);
   auto renderer = std::make_shared<ge::Renderer>(window, 0, 0, 0);
   auto scene = std::make_shared<ge::Scene>(800, 640);
@@ -24,12 +25,14 @@ void test() {
 
   auto gameTimer = ge::GameTimer();
   auto shouldQuit = false;
+  auto keyboard = ge::Keyboard();
   while (!shouldQuit) {
     gameTimer.startCap();
-    SDL_PumpEvents();
+
+    //SDL_PumpEvents();
     double delta = gameTimer.update();
-    const Uint8 *keyState = SDL_GetKeyboardState(nullptr);
-    if (keyState[SDL_SCANCODE_ESCAPE]) {
+    auto keyPress = keyboard.polled();
+    if (keyPress.key == '\033') {
       shouldQuit = true;
     }
 

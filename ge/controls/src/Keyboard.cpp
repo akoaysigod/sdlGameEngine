@@ -9,7 +9,7 @@ public:
   SDL_Event event;
 };
 
-Keyboard::Keyboard(): eventHolder(std::make_unique<EventHolder>()) {}
+Keyboard::Keyboard(): eventHolder(std::make_shared<EventHolder>()) {}
 
 KeysPressed Keyboard::polled() {
   auto e = eventHolder->event;
