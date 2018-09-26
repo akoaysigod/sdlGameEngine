@@ -7,6 +7,9 @@ add_library(rendering
   src/View.cpp
   src/Window.cpp
 )
+
+add_dependencies(rendering init)
+
 target_include_directories(rendering
   PUBLIC include/
   PUBLIC ${SDL_INCLUDE_DIR}

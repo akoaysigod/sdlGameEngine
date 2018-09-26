@@ -4,4 +4,5 @@ add_library(luaBindings
 
 target_include_directories(luaBindings
   PUBLIC include/
+  PRIVATE ${LUA_INCLUDE_DIR}
 )

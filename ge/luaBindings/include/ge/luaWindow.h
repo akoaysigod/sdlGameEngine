@@ -2,6 +2,8 @@
 
 #include "../../../rendering/include/ge/Window.h"
 
+#include <memory>
+
 using namespace ge;
 
 static const char *kLUAWindowName= "GEWindow";
@@ -38,11 +40,14 @@ static int deinitWindow(lua_State *state) {
   return 0;
 }
 
-std::shared_ptr<luaL_Reg[]> makeWindowFuncs() {
-  //auto ret = std::make_shared<luaL_Reg[]>(new luaL_Reg[2]);
-  std::shared_ptr<luaL_Reg[]> ret(new luaL_Reg[2]);
-  ret[0] = {"__gc", deinitWindow};
-  ret[1] = {NULL, NULL};
+//c++17 feature not available on Apple LLVM 10
+//std::shared_ptr<luaL_Reg[]> ret(new luaL_Reg[2]);
+//ret[0] = {"__gc", deinitWindow};
+//ret[1] = {NULL, NULL};
+static std::shared_ptr<luaL_Reg> makeWindowFuncs() {
+  std::shared_ptr<luaL_Reg> ret(new luaL_Reg[2], std::default_delete<luaL_Reg[]>());
+  ret.get()[0] = {"__gc", deinitWindow};
+  ret.get()[1] = {NULL, NULL};
   return ret;
   //ret->0 = {NULL, NULL};
   //  static const luaL_Reg windowFuncs[] = {

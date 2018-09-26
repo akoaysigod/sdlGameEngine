@@ -35,5 +35,5 @@ bool InitLua::runScript(const char *name) {
 }
 
 void InitLua::registerObjects() {
-  //registerObject(kLUAWindowName, initWindow, windowFuncs());
+  registerObject(kLUAWindowName, initWindow, makeWindowFuncs().get());
 }
