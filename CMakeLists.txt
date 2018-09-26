@@ -27,7 +27,7 @@ set(WINDOWS_SDL_MIXER_INCLUDE_DIR "G:/SDL2_mixer-2.0.2/include")
 
 find_path(
   SDL_INCLUDE_DIR
-  NAMES SDL.h
+  NAMES SDL.h SDL_keycode.h
   PATHS ${MAC_LIB_DIR} ${LINUX_LIB_DIR} ${WINDOWS_SDL_INCLUDE_DIR}
   PATH_SUFFIXES Headers SDL2
 )
@@ -147,6 +147,7 @@ target_link_libraries(
   PRIVATE ${SDL_MIXER_LIBRARY}
 
   PUBLIC actions
+  PUBLIC controls
   PUBLIC init
   PUBLIC nodes
   PUBLIC rendering
