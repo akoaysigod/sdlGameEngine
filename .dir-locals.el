@@ -3,6 +3,6 @@
 
 ((c++-mode
   ;;(flycheck-c/c++-clang-executable . "/Users/tony/.bin/llvm/bin/clang")
-  (flycheck-c/c++-clang-executable . "/home/tony/.bin/clang/bin/clang")
-  (flycheck-clang-include-path . ("/usr/include/SDL2" "/usr/local/include/SDL2" "/home/tony/.bin/clang/include/c++/v1"))
+  (flycheck-c/c++-clang-executable . "/usr/bin/clang")
+  (flycheck-clang-include-path . ("/usr/include/SDL2" "/usr/local/include/SDL2" "/usr/local/include/"))
   (flycheck-clang-language-standard . "c++17")))

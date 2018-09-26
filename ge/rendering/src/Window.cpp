@@ -1,5 +1,7 @@
 #include "../include/ge/Window.h"
 
+#include <SDL.h>
+
 using ge::Window;
 
 Window::Window(const std::string &name, int positionX, int positionY, int width, int height):

@@ -1,11 +1,11 @@
 # Dependencies
-SDL2, 2.0.7  
-SDL2_image, 2.0.2  
-SDL2_ttf, 2.0.14  
-SDL2_mixer, 2.0.2  
-Note: For MacOS builds I am assuming a brew install SDL2*. For Windows I hardcoded everything.  
-Linux: uuid-dev is also required.  
-CMake, at least 3.9.0  
+SDL2, 2.0.7
+SDL2_image, 2.0.2
+SDL2_ttf, 2.0.14
+SDL2_mixer, 2.0.2
+Note: For MacOS builds I am assuming a brew install SDL2*. For Windows I hardcoded everything.
+Linux: uuid-dev is also required.
+CMake, at least 3.9.0
 
 C++17, although I think this can be downgraded as I removed all the features
 being used, I may add some back in the future though.
@@ -42,7 +42,7 @@ I don't generally develop on Windows machines.
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
 
-void run() {
+oid run() {
   // window position (100, 100)
   auto window = ge::Window("window", 100, 100, SCREEN_WIDTH, SCREEN_HEIGHT);
   // RGB color, will render a black window
@@ -104,9 +104,9 @@ int main() {
 So much boilerplate :(. I will abstract some of this stuff someday.
 
 # Todo
-Wrap SDL IO.  
-Unhardcode SDL for Windows.  
-Figure out how to compile with CMake on Windows without opening VS.  
+Wrap SDL IO.
+Unhardcode SDL for Windows.
+Figure out how to compile with CMake on Windows without opening VS.
 
 # Useful snippets
 Not directly related to the use of this engine but things I had to do while using it in

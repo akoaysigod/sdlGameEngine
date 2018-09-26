@@ -5,7 +5,8 @@ add_library(actions
   src/GroupAction.cpp
   src/MoveAction.cpp
 )
+
 target_include_directories(actions
   PUBLIC include/
   PUBLIC ${SDL_INCLUDE_DIR}
-  )
+)

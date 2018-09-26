@@ -4,6 +4,7 @@ add_library(rendering
   src/SpriteAtlas.cpp
   src/SpriteAtlasEntry.cpp
   src/Texture.cpp
+  src/View.cpp
   src/Window.cpp
 )
 target_include_directories(rendering

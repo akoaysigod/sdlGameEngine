@@ -1,8 +1,10 @@
 #pragma once
 
-#include <SDL.h>
 #include <memory>
 #include <string>
+
+// will this work?
+class SDL_Window;
 
 namespace ge {
 class Window {

@@ -13,6 +13,11 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED YES)
 set(CMAKE_CXX_EXTENSIONS NO)
 
+option(LUA "LUA" OFF)
+if (LUA)
+  add_definitions(-DLUA)
+endif()
+
 set(MAC_INCLUDE_DIR /usr/local/include/SDL2)
 set(LINUX_INCLUDE_DIR /usr/include/SDL2)
 set(WINDOWS_SDL_INCLUDE_DIR "G:/SDL2-2.0.7/include")
@@ -48,6 +53,15 @@ find_path(
   PATH_SUFFIXES Headers SDL2
 )
 
+if (LUA)
+  set(LUA_LINUX_INCLUDE_DIR /usr/local/include/)
+  find_path(
+    LUA_INCLUDE_DIR
+    NAMES lua.hpp
+    PATHS ${LUA_LINUX_INCLUDE_DIR}
+  )
+endif()
+
 add_subdirectory(ge/)
 
 #set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
@@ -58,9 +72,10 @@ target_include_directories(${PROJECT_NAME}
   PUBLIC ${SDL_INCLUDE_DIR}
   PRIVATE ${SDL_IMAGE_INCLUDE_DIR}
   PUBLIC ${SDL_TTF_INCLUDE_DIR}
-  #need to hide this somehow at some point
-  #more abstraction yo
   PUBLIC ${SDL_MIXER_INCLUDE_DIR}
+  if (LUA)
+    PUBLIC ${LUA_INCLUDE_DIR}
+  endif()
 )
 
 if (APPLE)
@@ -104,6 +119,26 @@ find_library(
   PATHS ${MAC_LIB_DIR} ${LINUX_LIB_DIR} ${WINDOWS_SDL_MIXER_LIB_DIR}
 )
 
+if (LUA)
+  set(LUA_LINUX_LIB_DIR /usr/local/lib)
+  find_library(
+    LUA_LIBRARY
+    NAMES lua
+    PATHS ${LUA_LINUX_LIB_DIR}
+  )
+  find_library(
+    LIBDL
+    NAMES dl
+    PATHS /lib/x86_64-linux-gnu/libdl.so
+  )
+  target_link_libraries(
+    ${PROJECT_NAME}
+    # I do not understand why this is needed
+    PRIVATE ${LIBDL}
+    PUBLIC ${LUA_LIBRARY}
+  )
+endif()
+
 # figure out how CMake dependencies work
 # the order of this right now is specific or it'll fail, example nodes depends on actions
 # maybe there are other ones that I don't know about because I just got lucky and this works :)
@@ -113,10 +148,25 @@ target_link_libraries(
   PRIVATE ${SDL_IMAGE_LIBRARY}
   PRIVATE ${SDL_TTF_LIBRARY}
   PRIVATE ${SDL_MIXER_LIBRARY}
+
+  PUBLIC actions
   PUBLIC init
   PUBLIC nodes
-  PUBLIC actions
   PUBLIC rendering
   PUBLIC sound
   PUBLIC utils
 )
+
+if (LUA)
+  # temp for testing probably?
+  #target_link_libraries(
+  #  ${PROJECT_NAME}
+  #  PUBLIC luaBindings
+  #)
+  add_executable(main main.cpp)
+  target_link_libraries(main
+    PUBLIC ${PROJECT_NAME}
+    PUBLIC ${SDL_LIBRARY}
+    PUBLIC luaBindings
+  )
+endif()

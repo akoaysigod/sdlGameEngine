@@ -5,6 +5,9 @@ add_library(nodes
   src/Scene.cpp
   src/SpriteNode.cpp
 )
+
+add_dependencies(nodes actions)
+
 target_include_directories(nodes
   PUBLIC include/
   PUBLIC ${SDL_INCLUDE_DIR}
