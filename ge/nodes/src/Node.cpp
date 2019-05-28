@@ -31,10 +31,16 @@ void Node::setAnchorPoint(const double &x, const double &y) {
 }
 
 int Node::getX() {
+  if (auto camera = getCameraNode()) {
+    setXScale(camera->getXScale());
+  }
   return x - (anchorX * getWidth());
 }
 
 int Node::getY() {
+  if (auto camera = getCameraNode()) {
+    setYScale(camera->getYScale());
+  }
   return y - (anchorY * getHeight());
 }
 
@@ -57,6 +63,11 @@ void Node::setXScale(const double &scale) {
 
 void Node::setYScale(const double &scale) {
   yScale = scale;
+}
+
+void Node::setScale(const double &scale) {
+  setXScale(scale);
+  setYScale(scale);
 }
 
 double Node::getXScale() {

@@ -3,6 +3,7 @@
 #include "../include/ge/CameraNode.h"
 #include "../include/ge/Node.h"
 #include "../../rendering/include/ge/Renderer.h"
+#include "../../utils/include/ge/Point.h"
 #include "../include/ge/SpriteNode.h"
 
 #include <algorithm>
@@ -15,6 +16,10 @@ Scene::Scene(const int &width, const int &height):
   addRenderable(cameraNode);
 }
 
+std::shared_ptr<Point> Scene::toWorld(const int &x, const int &y) {
+  return std::make_shared<Point>(x + cameraNode->getX(), y + cameraNode->getY());
+}
+
 //updateable
 void Scene::update(double delta) {
   for (auto updateable: children) {
@@ -22,6 +27,7 @@ void Scene::update(double delta) {
       updateable->update(delta);
     }
   }
+  cameraNode->update(delta);
 }
 
 void Scene::add(std::shared_ptr<Node> node) {

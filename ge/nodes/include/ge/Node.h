@@ -28,6 +28,7 @@ namespace ge {
 
     void setXScale(const double &scale);
     void setYScale(const double &scale);
+    void setScale(const double &scale);
     double getXScale();
     double getYScale();
     int getWidth();

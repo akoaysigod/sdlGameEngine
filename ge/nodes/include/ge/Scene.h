@@ -10,6 +10,7 @@
 namespace ge {
   class CameraNode;
   class Node;
+  class Point;
   class Renderer;
   class SpriteNode;
 
@@ -28,6 +29,8 @@ namespace ge {
     std::vector<std::shared_ptr<Node>> getChildren();
 
     std::shared_ptr<CameraNode> cameraNode;
+
+    std::shared_ptr<Point> toWorld(const int &x, const int &y);
 
   protected:
     std::vector<std::shared_ptr<Node>> children = {};
