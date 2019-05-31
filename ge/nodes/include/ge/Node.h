@@ -56,7 +56,8 @@ namespace ge {
 
     void removeFromParent();
 
-    bool isVisible();
+    bool isVisible() const;
+    void setVisible(const bool &visible);
 
     void setCameraNode(std::shared_ptr<CameraNode> cameraNode);
     std::shared_ptr<CameraNode> getCameraNode() const;

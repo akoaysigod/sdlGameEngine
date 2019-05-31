@@ -172,6 +172,10 @@ void Node::removeFromParent() {
   (parent.lock())->remove(shared_from_this());
 }
 
-bool Node::isVisible() {
+bool Node::isVisible() const {
   return visible;
+}
+
+void Node::setVisible(const bool &visible) {
+  this->visible = visible;
 }

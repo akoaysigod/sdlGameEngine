@@ -19,7 +19,9 @@ void SpriteNode::setTexture(std::shared_ptr<Texture> texture) {
 
 //renderable
 void SpriteNode::render(const std::shared_ptr<Renderer> &renderer) {
-  renderer->renderCopy(texture->getCPtr(), texture->getClipRect(), getBounds());
+  if (isVisible()) {
+    renderer->renderCopy(texture->getCPtr(), texture->getClipRect(), getBounds());
+  }
 
   // this is repeated in RectNode
   // could make a private RenderableNode they both inherit from
