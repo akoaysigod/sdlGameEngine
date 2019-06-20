@@ -4,6 +4,7 @@ add_library(actions
   src/Easing.cpp
   src/GroupAction.cpp
   src/MoveAction.cpp
+  src/SequenceAction.cpp
 )
 target_include_directories(actions
   PUBLIC include/

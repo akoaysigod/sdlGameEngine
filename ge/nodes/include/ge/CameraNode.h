@@ -4,7 +4,6 @@
 #include "../../../rendering/include/ge/Renderable.h"
 
 #include <memory>
-#include <optional>
 
 namespace ge {
   class Point;
@@ -23,6 +22,6 @@ namespace ge {
     void update(double delta);
 
   private:
-    std::optional<std::shared_ptr<Node>> followNode;
+    std::shared_ptr<Node> followNode;
   };
 }
